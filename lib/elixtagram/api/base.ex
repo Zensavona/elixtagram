@@ -8,6 +8,12 @@ defmodule Elixtagram.API.Base do
       |> process_response
   end
 
+  defp process_response(data) do
+    data.body
+    |> Poison.decode!(keys: :atoms)
+    |> Map.fetch!(:data)
+  end
+
   defp build_url([part, []], :global) do
     config = Elixtagram.Config.get
     string = if config.access_token, do: "access_token=#{config.access_token}", else:  "client_id=#{config.client_id}"
@@ -43,20 +49,5 @@ defmodule Elixtagram.API.Base do
   defp params_join([h | t], string) do
     [param | value] = h
     params_join(t, string<>"&#{param}=#{value}")
-  end
-
-  defp process_response(data) do
-    data.body
-    |> Poison.decode!
-    |> Dict.fetch!("data")
-    |> format_response
-  end
-
-  defp format_response(records) when is_list(records) do
-    Enum.map(records, fn record -> format_response(record) end)
-  end
-
-  defp format_response(record) do
-    Enum.map(record, fn({k, v}) -> {String.to_atom(k), v} end)
   end
 end

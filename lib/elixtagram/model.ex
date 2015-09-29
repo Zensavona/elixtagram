@@ -5,18 +5,18 @@ defmodule Elixtagram.Model.ClientConfig do
 end
 
 defmodule Elixtagram.Model.Response do
-  @derive [Poison.Encoder]
+  # @derive [Poison.Encoder]
   defstruct data: nil
 end
 
 defmodule Elixtagram.Model.Tag do
-  @derive [Poison.Encoder]
+  # @derive [Poison.Encoder]
   defstruct name: nil, media_count: nil
 end
 
 defmodule Elixtagram.Model.Media do
-  @derive [Poison.Encoder]
-  defstruct id: nil, caption: nil, comments: nil,
+  # @derive [Poison.Encoder]
+  defstruct attribution: nil, id: nil, caption: nil, comments: nil,
             images: nil, likes: nil, link: nil, location: nil,
             tags: nil, user: nil
 end

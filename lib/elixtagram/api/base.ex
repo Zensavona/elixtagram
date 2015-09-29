@@ -11,8 +11,4 @@ defmodule Elixtagram.API.Base do
   def get(url_part) do
     data = get!(url_part).body
   end
-
-  def extract_data(struct) do
-    struct["data"]
-  end
 end

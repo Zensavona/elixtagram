@@ -14,7 +14,7 @@ defmodule Elixtagram.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger, :httpoison]]
+    [applications: [:logger, :httpoison, :oauth2]]
   end
 
   # Dependencies can be Hex packages:
@@ -29,7 +29,8 @@ defmodule Elixtagram.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.7.4"},
-      {:poison, "~> 1.5"}
+      {:poison, "~> 1.5"},
+      {:oauth2, "~> 0.3"}
     ]
   end
 end

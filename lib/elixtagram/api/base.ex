@@ -11,7 +11,6 @@ defmodule Elixtagram.API.Base do
   defp process_response(data) do
     data.body
     |> Poison.decode!(keys: :atoms)
-    |> Map.fetch!(:data)
   end
 
   defp build_url([part, []], :global) do

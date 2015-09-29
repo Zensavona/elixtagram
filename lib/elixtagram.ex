@@ -78,6 +78,7 @@ defmodule Elixtagram do
 
   ## ---------- Tags
 
+
   @doc """
   Takes a tag name and an optional access token, returns a `%Elixtagram.Model.Tag`.
 
@@ -145,4 +146,29 @@ defmodule Elixtagram do
        %Elixtagram.Model.Tag{media_count: 57.0, name: "munteddd"}]
   """
   defdelegate tag_search(query, token), to: Elixtagram.API.Tags, as: :search
+
+  @doc """
+  Takes a keyword list containing a tag and count, returns the n latest
+  items in that tag.
+
+  If a global access token was set with `Elixtagram.configure(:global, token)`, this
+  will be defaulted to, otherwise the client ID is used.
+
+  ## Example
+      iex(1)> Elixtagram.tag_recent_media([tag: "ts", count: 1])
+      [%Elixtagram.Model.Media{...}]
+  """
+  defdelegate tag_recent_media([tag: tag, count: count]),
+    to: Elixtagram.API.Tags, as: :recent_media
+
+  @doc """
+  Takes a keyword list containing a tag and count, and an access token.
+  returns the n latest items in that tag.
+
+  ## Example
+      iex(1)> Elixtagram.tag_recent_media([tag: "ts", count: 1], token)
+      [%Elixtagram.Model.Media{...}]
+  """
+  defdelegate tag_recent_media([tag: tag, count: count], token),
+    to: Elixtagram.API.Tags, as: :recent_media
 end

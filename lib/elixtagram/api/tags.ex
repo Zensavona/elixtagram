@@ -2,8 +2,12 @@ defmodule Elixtagram.API.Tags do
   import Elixtagram.API.Base
 
   def tag(tag_name) do
-    structure = Elixtagram.API.Base.get("/tags/#{tag_name}")
-      |> Poison.decode! as: %{"data" => Elixtagram.Model.Tag}
-    structure["data"]
+    tag = request(:get, "/tags/#{tag_name}")
+    struct Elixtagram.Model.Tag, tag
+  end
+
+  def search(query) do
+    tags = request :get, "/tags/search", [["q", query]]
+    Enum.map(tags, fn tag -> struct(Elixtagram.Model.Tag, tag) end)
   end
 end

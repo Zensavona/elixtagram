@@ -30,7 +30,8 @@ defmodule Elixtagram.Mixfile do
     [
       {:httpoison, "~> 0.7.4"},
       {:poison, "~> 1.5"},
-      {:oauth2, "~> 0.3"}
+      {:oauth2, "~> 0.3"},
+      {:ex_doc, github: "elixir-lang/ex_doc"}
     ]
   end
 end

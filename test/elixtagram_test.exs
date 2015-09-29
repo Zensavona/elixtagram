@@ -98,4 +98,39 @@ defmodule ElixtagramTest do
       assert tag.name == query
     end
   end
+
+  test "get recent media from a tag (unauthenticated)" do
+    tag = "ts"
+    use_cassette "tag_recent_media" do
+      medias = Elixtagram.tag_recent_media([tag: tag, count: 10])
+      [media | _] = medias
+      assert length(medias) > 0
+      assert Enum.member?(media.tags, "ts")
+    end
+  end
+
+  test "get recent media from a tag (implicitly unauthenticated)" do
+    tag = "ts"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "tag_recent_media_auth_implicit" do
+      medias = Elixtagram.tag_recent_media([tag: tag, count: 10])
+      [media | _] = medias
+      assert length(medias) > 0
+      assert Enum.member?(media.tags, "ts")
+    end
+  end
+
+  test "get recent media from a tag (explicitly unauthenticated)" do
+    tag = "ts"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "tag_recent_media_auth_explicit" do
+      medias = Elixtagram.tag_recent_media([tag: tag, count: 10], token)
+      [media | _] = medias
+      assert length(medias) > 0
+      assert Enum.member?(media.tags, "ts")
+    end
+  end
 end

@@ -14,17 +14,24 @@ defmodule Elixtagram.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :httpoison, :oauth2]]
+    [applications: app_list(Mix.env)]
   end
+
+  defp app_list(:dev), do: [:dotenv | app_list]
+  defp app_list(:test), do: [:dotenv | app_list]
+  defp app_list(_), do: app_list
+  defp app_list, do: [:logger, :httpoison, :oauth2]
 
   defp deps do
     [
       {:httpoison, "~> 0.7.4"},
       {:poison, "~> 1.5"},
       {:oauth2, "~> 0.3"},
-      {:ex_doc, github: "elixir-lang/ex_doc", only: :docs},
+      {:exvcr, "~> 0.3", only: [:dev, :test]},
+      {:ex_doc, github: "elixir-lang/ex_doc", only: [:dev, :docs]},
       {:excoveralls, "~> 0.3", only: [:dev, :test]},
-      {:inch_ex, "~> 0.4.0", only: [:dev, :docs]}
+      {:inch_ex, "~> 0.4.0", only: [:dev, :docs]},
+      {:dotenv, "~> 1.0.0"}
     ]
   end
 

@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "url": "https://api.instagram.com/v1/tags/lifeisaboutdrugs"
+    },
+    "response": {
+      "body": "{\"meta\":{\"code\":200},\"data\":{\"media_count\":27,\"name\":\"lifeisaboutdrugs\"}}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4999",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Tue, 29 Sep 2015 16:45:19 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=dc7abc8496af51e00aa2c7f52f68661f; expires=Tue, 27-Sep-2016 16:45:19 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "73"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "url": "https://api.instagram.com/v1/tags/search"
+    },
+    "response": {
+      "body": "{\"meta\":{\"code\":200},\"data\":[{\"media_count\":38899687.0,\"name\":\"fit\"},{\"media_count\":23033.0,\"name\":\"\\ufb01t\"},{\"media_count\":86166257.0,\"name\":\"fitness\"},{\"media_count\":28091908.0,\"name\":\"fitfam\"},{\"media_count\":20835410.0,\"name\":\"fitspo\"},{\"media_count\":8174685.0,\"name\":\"fitnessaddict\"},{\"media_count\":7474740.0,\"name\":\"fitnessmodel\"},{\"media_count\":7380745.0,\"name\":\"fitlife\"},{\"media_count\":5271410.0,\"name\":\"fitgirl\"},{\"media_count\":5265428.0,\"name\":\"fitspiration\"},{\"media_count\":4977206.0,\"name\":\"fitmom\"},{\"media_count\":3613942.0,\"name\":\"fitgirls\"},{\"media_count\":3214685.0,\"name\":\"fitnessmotivation\"},{\"media_count\":2982178.0,\"name\":\"fitfood\"},{\"media_count\":2143748.0,\"name\":\"fitchick\"},{\"media_count\":2093000.0,\"name\":\"fitnessjourney\"},{\"media_count\":1917712.0,\"name\":\"fitchicks\"},{\"media_count\":1485695.0,\"name\":\"fitnessfreak\"},{\"media_count\":1242502.0,\"name\":\"fitnessgirl\"},{\"media_count\":1213528.0,\"name\":\"fitfluential\"},{\"media_count\":1138748.0,\"name\":\"fitnesslifestyle\"},{\"media_count\":1121417.0,\"name\":\"fitforlife\"},{\"media_count\":1029864.0,\"name\":\"fitbody\"},{\"media_count\":931126.0,\"name\":\"fitnessgear\"},{\"media_count\":929196.0,\"name\":\"fitment\"},{\"media_count\":900253.0,\"name\":\"fitnessfood\"},{\"media_count\":870911.0,\"name\":\"fitted\"},{\"media_count\":776323.0,\"name\":\"fitbit\"},{\"media_count\":757069.0,\"name\":\"fitnesslife\"},{\"media_count\":747971.0,\"name\":\"fitsporation\"},{\"media_count\":717237.0,\"name\":\"fitstagram\"},{\"media_count\":702449.0,\"name\":\"fitfamily\"},{\"media_count\":674133.0,\"name\":\"fitmoms\"},{\"media_count\":620209.0,\"name\":\"fitcouple\"},{\"media_count\":596091.0,\"name\":\"fitflop\"},{\"media_count\":542991.0,\"name\":\"fitgirlsguide\"},{\"media_count\":537112.0,\"name\":\"fitnessgirls\"},{\"media_count\":506812.0,\"name\":\"fitfamdk\"},{\"media_count\":481613.0,\"name\":\"fitnation\"},{\"media_count\":461656.0,\"name\":\"fitnessgoals\"},{\"media_count\":461086.0,\"name\":\"fit4life\"},{\"media_count\":442400.0,\"name\":\"fitnes\"},{\"media_count\":423878.0,\"name\":\"fitnessinspiration\"},{\"media_count\":409034.0,\"name\":\"fitnessphysique\"},{\"media_count\":389115.0,\"name\":\"fitmama\"},{\"media_count\":377846.0,\"name\":\"fitlifestyle\"},{\"media_count\":357502.0,\"name\":\"fitmotivation\"},{\"media_count\":337265.0,\"name\":\"fitfreak\"},{\"media_count\":328846.0,\"name\":\"fitnessfirst\"},{\"media_count\":315378.0,\"name\":\"fitwomen\"}]}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4997",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language, Accept-Encoding",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Tue, 29 Sep 2015 16:49:25 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=c6a4b718d00de80237b7e60a66ece21b; expires=Tue, 27-Sep-2016 16:49:25 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "2289"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

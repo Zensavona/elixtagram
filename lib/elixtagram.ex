@@ -75,4 +75,74 @@ defmodule Elixtagram do
   """
   defdelegate get_token!(code), to: Elixtagram.OAuthStrategy, as: :get_token!
 
+
+  ## ---------- Tags
+
+  @doc """
+  Takes a tag name and an optional access token, returns a `%Elixtagram.Model.Tag`.
+
+  If a global access token was set with `Elixtagram.configure(:global, token)`, this
+  will be defaulted to, otherwise the client ID is used.
+
+  ## Example
+      iex(1)> Elixtagram.tag("lifeisaboutdrugs")
+      %Elixtagram.Model.Tag{media_count: 27, name: "lifeisaboutdrugs"}
+  """
+  defdelegate tag(name), to: Elixtagram.API.Tags, as: :tag
+
+  @doc """
+  Same as `Elixtagram.tag/1`, except takes an explicit access token.
+
+  *The only real benefit to using an access token over a client id here
+  is less rate limiting (in general and per token).*
+
+  ## Example
+      iex(1)> Elixtagram.tag("lifeisaboutdrugs", "XXXXXXXXXXXXXXXXX")
+      %Elixtagram.Model.Tag{media_count: 27, name: "lifeisaboutdrugs"}
+  """
+  defdelegate tag(name, token), to: Elixtagram.API.Tags, as: :tag
+
+  @doc """
+  Takes a query string and returns a list of tags as `%Elixtagram.Model.Tag`.
+
+  If a global access token was set with `Elixtagram.configure(:global, token)`, this
+  will be defaulted to, otherwise the client ID is used.
+
+  ## Example
+      iex(1)> Elixtagram.tag_search("mdmazing")
+      [%Elixtagram.Model.Tag{media_count: 8826.0, name: "mdmazing"},
+      %Elixtagram.Model.Tag{media_count: 22.0, name: "mdmazingnight"},
+      %Elixtagram.Model.Tag{media_count: 4.0, name: "mdmazingtime"},
+      %Elixtagram.Model.Tag{media_count: 3.0, name: "mdmazingjourney"},
+      %Elixtagram.Model.Tag{media_count: 3.0, name: "mdmazingweekend"},
+      %Elixtagram.Model.Tag{media_count: 3.0, name: "mdmazinglife"},
+      %Elixtagram.Model.Tag{media_count: 3.0, name: "mdmazinggggg"},
+      %Elixtagram.Model.Tag{media_count: 1.0, name: "mdmazing💋💊🎉🍸"},
+      %Elixtagram.Model.Tag{media_count: 1.0, name: "mdmazinglights"},
+      %Elixtagram.Model.Tag{media_count: 1.0, name: "mdmazing😈👽👀"}]
+  """
+  defdelegate tag_search(query), to: Elixtagram.API.Tags, as: :search
+
+  @doc """
+  Takes a query string and an access token, returns a list of tags
+
+  *The only real benefit to using an access token over a client id here
+  is less rate limiting (in general and per token).*
+
+  ## Example
+      iex(1)> iex(10)> Elixtagram.tag_search("munted", "XXXXXXXXXXXXXXXXX")
+      [%Elixtagram.Model.Tag{media_count: 20681.0, name: "munted"},
+       %Elixtagram.Model.Tag{media_count: 267.0, name: "muntedasfuck"},
+       %Elixtagram.Model.Tag{media_count: 267.0, name: "muntedheads"},
+       %Elixtagram.Model.Tag{media_count: 202.0, name: "muntedas"},
+       %Elixtagram.Model.Tag{media_count: 188.0, name: "muntedshakas"},
+       %Elixtagram.Model.Tag{media_count: 161.0, name: "muntedmondays"},
+       %Elixtagram.Model.Tag{media_count: 109.0, name: "muntedselfie"},
+       %Elixtagram.Model.Tag{media_count: 94.0, name: "muntedeye"},
+       %Elixtagram.Model.Tag{media_count: 93.0, name: "muntedcunts"},
+       %Elixtagram.Model.Tag{media_count: 63.0, name: "muntedsmile"},
+       %Elixtagram.Model.Tag{media_count: 58.0, name: "muntedaf"},
+       %Elixtagram.Model.Tag{media_count: 57.0, name: "munteddd"}]
+  """
+  defdelegate tag_search(query, token), to: Elixtagram.API.Tags, as: :search
 end

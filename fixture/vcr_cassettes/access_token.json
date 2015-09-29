@@ -1,0 +1,59 @@
+[
+  {
+    "request": {
+      "body": "client_id=<REMOVED>client_secret=<REMOVED>&code=<REMOVED>&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fgithub.com%2Fzensavona%2Felixtagram",
+      "headers": {
+        "Accept": "application/x-www-form-urlencoded",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "method": "post",
+      "options": [],
+      "url": "https://api.instagram.com/oauth/access_token"
+    },
+    "response": {
+      "body": "{\"access_token\":\"<REMOVED>\",\"user\":{\"username\":\"zenm8\",\"bio\":\"\\ud83c\\udf37 Whole Food Plant Based Nutrition\\n\\ud83c\\udfc2 Powerful Functional Strength \\u0026 Fitness\\n\\ud83c\\udf0f Digital Nomad\\n\\ud83d\\udc08 Animal Lover\\n\\ud83d\\ude38Berlin\\u2668\\ufe0fChiang Mai\\ud83c\\udde6\\ud83c\\uddfaBrisbane\",\"website\":\"http:\\/\\/zen.id.au\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xaf1\\/t51.2885-19\\/s150x150\\/11856601_1483869585265582_942748740_a.jpg\",\"full_name\":\"Zen Savona\",\"id\":\"35822824\"}}",
+      "headers": {
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language, Accept-Encoding",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Tue, 29 Sep 2015 17:03:26 GMT",
+        "Content-Type": "application/json",
+        "Set-Cookie": "csrftoken=4f2526130ce8b6d6aed7eadd8abfbba6; expires=Tue, 27-Sep-2016 17:03:26 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "545"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  },
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "url": "https://api.instagram.com/v1/tags/ruaware"
+    },
+    "response": {
+      "body": "{\"meta\":{\"code\":200},\"data\":{\"media_count\":272763,\"name\":\"ruaware\"}}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4995",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Tue, 29 Sep 2015 17:03:26 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=d4cedea879338c7b1ede11f7190ce92f; expires=Tue, 27-Sep-2016 17:03:26 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "68"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

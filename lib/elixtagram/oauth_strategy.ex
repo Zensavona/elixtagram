@@ -1,6 +1,8 @@
 defmodule Elixtagram.OAuthStrategy do
   use OAuth2.Strategy
 
+  @scopes ~w(comments relationships likes)
+
   # Public API
   def new do
     config = Elixtagram.Config.get
@@ -16,8 +18,12 @@ defmodule Elixtagram.OAuthStrategy do
   end
 
   def authorize_url!(scope) do
+    scopes = scope
+              |> Enum.map(fn s -> to_string(s) end)
+              |> Enum.filter(fn s -> Enum.member?(@scopes, s) end)
+              |> Enum.join(" ")
     new()
-    |> put_param(:scope, scope)
+    |> put_param(:scope, scopes)
     |> OAuth2.Client.authorize_url!([])
   end
   def authorize_url! do

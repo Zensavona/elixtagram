@@ -32,6 +32,14 @@ defmodule ElixtagramTest do
     end
   end
 
+  test "raise an exception when a bad access token is used" do
+    use_cassette "oauth_exception" do
+      assert_raise Elixtagram.Error, fn ->
+        Elixtagram.tag("exceptional", "lol")
+      end
+    end
+  end
+
   test "get a hashtag (unauthenticated)" do
     tag_name = "lifeisaboutdrugs"
     use_cassette "tag" do

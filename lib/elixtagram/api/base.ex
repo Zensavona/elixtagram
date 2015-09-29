@@ -5,12 +5,15 @@ defmodule Elixtagram.API.Base do
     [url_part, params]
       |> build_url(token)
       |> HTTPoison.get!
-      |> process_response
+      |> handle_response
   end
 
-  defp process_response(data) do
-    data.body
-    |> Poison.decode!(keys: :atoms)
+  defp handle_response(data) do
+    response = Poison.decode!(data.body, keys: :atoms)
+    case response.meta.code do
+      200 -> response
+      _ -> raise(Elixtagram.Error, [code: response.meta.code, message: "#{response.meta.error_type}: #{response.meta.error_message}"])
+    end
   end
 
   defp build_url([part, []], :global) do

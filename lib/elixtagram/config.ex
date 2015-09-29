@@ -1,6 +1,7 @@
 defmodule Elixtagram.Config do
   def configure(client_id, client_secret, redirect_uri) do
     start_link(%Elixtagram.Model.ClientConfig{client_id: client_id, client_secret: client_secret, redirect_uri: redirect_uri})
+    {:ok, []}
   end
 
   def configure do
@@ -9,6 +10,7 @@ defmodule Elixtagram.Config do
       client_secret: System.get_env("INSTAGRAM_CLIENT_SECRET"),
       redirect_uri: System.get_env("INSTAGRAM_REDIRECT_URI")
       })
+    {:ok, []}
   end
 
   def configure(:global, token) do

@@ -25,7 +25,9 @@ defmodule Elixtagram.API.Tags do
   Fetch a list of n recent medias as `%Elixtagram.Model.Media` for a given tag.
   Optionally takes an access token.
   """
-  def recent_media([tag: tag_name, count: count], token \\ :global) do
-    request(:get, "/tags/#{tag_name}/media/recent", token, [["count", count]]).data |> Enum.map(&parse_media(&1))
+  def recent_media(tag_name, params, token \\ :global) do
+    accepted = [:count, :min_tag_id, :max_tag_id]
+    request_params = parse_request_params(params, accepted)
+    request(:get, "/tags/#{tag_name}/media/recent", token, request_params).data |> Enum.map(&parse_media(&1))
   end
 end

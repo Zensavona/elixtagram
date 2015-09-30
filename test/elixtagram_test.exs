@@ -66,7 +66,7 @@ defmodule ElixtagramTest do
     Elixtagram.configure(:global, token)
 
     use_cassette "tag_auth_implicit" do
-      tag = Elixtagram.tag(tag_name)
+      tag = Elixtagram.tag(tag_name, :global)
       assert tag.name == tag_name
       assert tag.media_count > 0
     end
@@ -100,7 +100,7 @@ defmodule ElixtagramTest do
     Elixtagram.configure(:global, token)
 
     use_cassette "tag_search_auth_implicit" do
-      tags = Elixtagram.tag_search(query)
+      tags = Elixtagram.tag_search(query, :global)
       [tag | _] = tags
       assert length(tags) > 0
       assert tag.name == query
@@ -110,8 +110,8 @@ defmodule ElixtagramTest do
   test "get recent media from a tag (unauthenticated)" do
     tag = "ts"
     use_cassette "tag_recent_media" do
-      medias = Elixtagram.tag_recent_media([tag: tag, count: 10])
-      [media | _] = medias
+      medias = Elixtagram.tag_recent_media(tag, %{count: 10})
+      media = List.first(medias)
       assert length(medias) > 0
       assert Enum.member?(media.tags, "ts")
     end
@@ -123,8 +123,8 @@ defmodule ElixtagramTest do
     Elixtagram.configure(:global, token)
 
     use_cassette "tag_recent_media_auth_implicit" do
-      medias = Elixtagram.tag_recent_media([tag: tag, count: 10])
-      [media | _] = medias
+      medias = Elixtagram.tag_recent_media(tag, %{count: 10}, :global)
+      media = List.first(medias)
       assert length(medias) > 0
       assert Enum.member?(media.tags, "ts")
     end
@@ -135,8 +135,8 @@ defmodule ElixtagramTest do
     token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
 
     use_cassette "tag_recent_media_auth_explicit" do
-      medias = Elixtagram.tag_recent_media([tag: tag, count: 10], token)
-      [media | _] = medias
+      medias = Elixtagram.tag_recent_media(tag, %{count: 10}, token)
+      media = List.first(medias)
       assert length(medias) > 0
       assert Enum.member?(media.tags, "ts")
     end
@@ -157,7 +157,7 @@ defmodule ElixtagramTest do
     Elixtagram.configure(:global, token)
 
     use_cassette "location_auth_implicit" do
-      location = Elixtagram.location(id)
+      location = Elixtagram.location(id, :global)
       assert location.id == to_string(id)
     end
   end
@@ -233,7 +233,7 @@ defmodule ElixtagramTest do
     token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
     Elixtagram.configure(:global, token)
     use_cassette "location_lat_lng_auth_implicit" do
-      locations = Elixtagram.location_search(%{lat: "52.5167", lng: "13.3833", count: 30})
+      locations = Elixtagram.location_search(%{lat: "52.5167", lng: "13.3833", count: 30}, :global)
       my_fave_spot = List.first(for l=%{name: "برلين"} <- locations, do: l)
       assert length(locations) == 30
       assert my_fave_spot.name == "برلين"

@@ -148,28 +148,41 @@ defmodule Elixtagram do
   defdelegate tag_search(query, token), to: Elixtagram.API.Tags, as: :search
 
   @doc """
-  Takes a keyword list containing a tag and count, returns the n latest
-  items in that tag.
+  Takes a tag name, and a Map of params
+  Returns the n latest items in that tag
+
+  Search params:
+    - count
+    - min_tag_id
+    - max_tag_id
 
   If a global access token was set with `Elixtagram.configure(:global, token)`, this
   will be defaulted to, otherwise the client ID is used.
 
   ## Example
-      iex(1)> Elixtagram.tag_recent_media([tag: "ts", count: 1])
+      iex(1)> Elixtagram.tag_recent_media("ts", %{count: 1})
       [%Elixtagram.Model.Media{...}]
   """
-  defdelegate tag_recent_media([tag: tag, count: count]),
+  defdelegate tag_recent_media(tag_name, params),
     to: Elixtagram.API.Tags, as: :recent_media
 
   @doc """
-  Takes a keyword list containing a tag and count, and an access token.
-  returns the n latest items in that tag.
+  Takes a tag name, a Map of params and an access token
+  Returns the n latest items in that tag
+
+  Search params:
+    - count
+    - min_tag_id
+    - max_tag_id
+
+  If a global access token was set with `Elixtagram.configure(:global, token)`, this
+  will be defaulted to, otherwise the client ID is used.
 
   ## Example
-      iex(1)> Elixtagram.tag_recent_media([tag: "ts", count: 1], token)
+      iex(1)> Elixtagram.tag_recent_media("ts", %{count: 1}, token)
       [%Elixtagram.Model.Media{...}]
   """
-  defdelegate tag_recent_media([tag: tag, count: count], token),
+  defdelegate tag_recent_media(tag_name, params, token),
     to: Elixtagram.API.Tags, as: :recent_media
 
 

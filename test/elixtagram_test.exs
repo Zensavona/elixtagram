@@ -117,7 +117,7 @@ defmodule ElixtagramTest do
     end
   end
 
-  test "get recent media from a tag (implicitly unauthenticated)" do
+  test "get recent media from a tag (implicitly authenticated)" do
     tag = "ts"
     token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
     Elixtagram.configure(:global, token)
@@ -130,7 +130,7 @@ defmodule ElixtagramTest do
     end
   end
 
-  test "get recent media from a tag (explicitly unauthenticated)" do
+  test "get recent media from a tag (explicitly authenticated)" do
     tag = "ts"
     token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
 
@@ -140,5 +140,114 @@ defmodule ElixtagramTest do
       assert length(medias) > 0
       assert Enum.member?(media.tags, "ts")
     end
+  end
+
+  test "get a location by id (unauthenticated)" do
+    id = 1
+
+    use_cassette "location" do
+      location = Elixtagram.location(id)
+      assert location.id == to_string(id)
+    end
+  end
+
+  test "get a location by id (implicitly authenticated)" do
+    id = 1
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "location_auth_implicit" do
+      location = Elixtagram.location(id)
+      assert location.id == to_string(id)
+    end
+  end
+
+  test "get a location by id (explicitly authenticated)" do
+    id = 1
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "location_auth_explicit" do
+      location = Elixtagram.location(id, token)
+      assert location.id == to_string(id)
+    end
+  end
+
+  test "get recent media at a location (unauthenticated)" do
+    use_cassette "location_recent_media" do
+      recent_media = Elixtagram.location_recent_media(1, %{count: 1})
+      assert length(recent_media) == 1
+    end
+  end
+
+  test "get recent media at a location (implicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+    use_cassette "location_recent_media_auth_implicit" do
+      recent_media = Elixtagram.location_recent_media(1, %{count: 1}, :global)
+      assert length(recent_media) == 1
+    end
+  end
+
+  test "get recent media at a location (explicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    use_cassette "location_recent_media_auth_explicit" do
+      recent_media = Elixtagram.location_recent_media(1, %{count: 1}, token)
+      assert length(recent_media) == 1
+    end
+  end
+
+  test "find locations by latitude/longitude (unauthenticated)" do
+    use_cassette "location_lat_lng" do
+      locations = Elixtagram.location_search(%{lat: 1, lng: 2, count: 1})
+      assert length(locations) == 1
+      assert List.first(locations).latitude == 1.0
+      assert List.first(locations).longitude == 2.0
+    end
+  end
+
+  test "find locations by Facebook Places ID (unauthenticated)" do
+    use_cassette "location_facebook_places" do
+      locations = Elixtagram.location_search(%{facebook_places_id: 1})
+      assert length(locations) == 1
+      assert List.first(locations).name == "my home"
+    end
+  end
+
+  test "find locations by Foursquare ID (v2) (unauthenticated)" do
+    use_cassette "location_foursquare_v2" do
+      locations = Elixtagram.location_search(%{foursquare_v2_id: "430d0a00f964a5203e271fe3"})
+      assert length(locations) == 1
+    end
+  end
+
+  # Foursquare v1 API is deprecated and this endpoint will probably be killed
+  # off in the future, so if this test starts failing, that might be it.
+  test "find locations by Foursquare ID (v1) (unauthenticated)" do
+    use_cassette "location_foursquare_v1" do
+      locations = Elixtagram.location_search(%{foursquare_id: 79273})
+      assert length(locations) == 1
+    end
+  end
+
+  test "find 30 locations near Berlin by latitude/longitude (implicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+    use_cassette "location_lat_lng_auth_implicit" do
+      locations = Elixtagram.location_search(%{lat: "52.5167", lng: "13.3833", count: 30})
+      my_fave_spot = List.first(for l=%{name: "برلين"} <- locations, do: l)
+      assert length(locations) == 30
+      assert my_fave_spot.name == "برلين"
+    end
+  end
+
+  test "find Lab.Oratory with Foursquare v2 ID (explicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    use_cassette "location_foursquare_v2_auth_explicit" do
+      # From the Foursquare page: "Best Gay Sex club ever!!!"
+      #                           "Always you can find something big for yourself"
+      my_other_fave = Elixtagram.location_search(%{foursquare_v2_id: "4c941c0f03413704fb386fef"}, token)
+      assert List.first(my_other_fave).name == "lab.oratory"
+    end
+
   end
 end

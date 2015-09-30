@@ -131,7 +131,7 @@ defmodule Elixtagram do
   is less rate limiting (in general and per token).*
 
   ## Example
-      iex(1)> iex(10)> Elixtagram.tag_search("munted", "XXXXXXXXXXXXXXXXX")
+      iex(1)> Elixtagram.tag_search("munted", "XXXXXXXXXXXXXXXXX")
       [%Elixtagram.Model.Tag{media_count: 20681.0, name: "munted"},
        %Elixtagram.Model.Tag{media_count: 267.0, name: "muntedasfuck"},
        %Elixtagram.Model.Tag{media_count: 267.0, name: "muntedheads"},

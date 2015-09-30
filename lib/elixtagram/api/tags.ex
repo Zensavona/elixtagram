@@ -1,6 +1,6 @@
 defmodule Elixtagram.API.Tags do
   @moduledoc """
-  Provides access to the `/tags/` area of the Instagram API.
+  Provides access to the `/tags/` area of the Instagram API (for internal use).
   """
   import Elixtagram.API.Base
   import Elixtagram.Parser

@@ -1,7 +1,6 @@
 defmodule Elixtagram.API.Base do
   @moduledoc """
-  Provides general request making and handling functionality to
-  more specific parts of the API.
+  Provides general request making and handling functionality (for internal use).
   """
   @base_url "https://api.instagram.com/v1"
 

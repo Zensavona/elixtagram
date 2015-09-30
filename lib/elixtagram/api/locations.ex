@@ -1,6 +1,6 @@
 defmodule Elixtagram.API.Locations do
   @moduledoc """
-  Provides access to the `/locations/` area of the Instagram API.
+  Provides access to the `/locations/` area of the Instagram API (for internal use).
   """
   import Elixtagram.API.Base
   import Elixtagram.Parser

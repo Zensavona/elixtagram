@@ -171,4 +171,125 @@ defmodule Elixtagram do
   """
   defdelegate tag_recent_media([tag: tag, count: count], token),
     to: Elixtagram.API.Tags, as: :recent_media
+
+
+  ## ---------- Locations
+
+
+  @doc """
+  Takes a location id and returns a `%Elixtagram.Model.Location`
+
+  ## Example
+      iex(1)> Elixtagram.location(1)
+      %Elixtagram.Model.Location{id: "1", latitude: 37.782492553,
+      longitude: -122.387785235, name: "Dog Patch Labs"}
+  """
+  defdelegate location(location_id), to: Elixtagram.API.Locations, as: :location
+
+  @doc """
+  Takes a location id and an access token.
+  Returns a `%Elixtagram.Model.Location`
+
+  ## Example
+      iex(1)> Elixtagram.location(1, token)
+      %Elixtagram.Model.Location{id: "1", latitude: 37.782492553,
+      longitude: -122.387785235, name: "Dog Patch Labs"}
+  """
+  defdelegate location(location_id, token), to: Elixtagram.API.Locations, as: :location
+
+  @doc """
+  Takes a location id and a Map of params.
+  Returns a List of recent media (as `Elixtagram.Model.Media`)
+
+  Search params:
+    - count
+    - min_timestamp
+    - max_timestamp
+    - min_id
+    - max_id
+
+  ## Example
+      iex(1)> Elixtagram.location_recent_media(1, %{count: 1})
+      [%Elixtagram.Model.Media{..}]
+  """
+  defdelegate location_recent_media(location_id, params), to: Elixtagram.API.Locations, as: :recent_media
+
+  @doc """
+  Takes a location id a Map of params and an access token.
+  Returns a List of recent media (as `Elixtagram.Model.Media`)
+
+  Search params:
+    - count
+    - min_timestamp
+    - max_timestamp
+    - min_id
+    - max_id
+
+  ## Example
+      iex(1)> Elixtagram.location_recent_media(1, %{count: 1})
+      [%Elixtagram.Model.Media{..}]
+  """
+  defdelegate location_recent_media(location_id, params, token), to: Elixtagram.API.Locations, as: :recent_media
+
+  @doc """
+  Takes a Map of search params.
+  Returns a List of locations (as `Elixtagram.Model.Location`)
+
+  Search params:
+    - distance (in meters, defaults to 1000)
+    - count
+    - lat and lng (must be used together)
+    - facebook_places_id
+    - foursquare_v2_id
+    - foursquare_id (For IDs from Foursquare's (deprecated) v1 API)
+
+  ## Examples
+      iex(1)> Elixtagram.location_search(%{lat: "52.5167", lng: "13.3833", count: 3})
+      [%Elixtagram.Model.Location{id: "1014581914", latitude: 52.516667,
+      longitude: 13.383333, name: "Alemanha"},
+      %Elixtagram.Model.Location{id: "1003437077", latitude: 52.516667,
+      longitude: 13.383333, name: "Njemačka"},
+      %Elixtagram.Model.Location{id: "1014197989", latitude: 52.516667,
+      longitude: 13.383333, name: "Γερμανία"}]
+
+      iex(2)> Elixtagram.location_search(%{facebook_places_id: 1})
+      [%Elixtagram.Model.Location{id: "343525978", latitude: 57.9913,
+      longitude: 56.1355, name: "my home"}]
+
+      iex(3)> Elixtagram.location_search(%{foursquare_v2_id: "4c941c0f03413704fb386fef"})
+      [%Elixtagram.Model.Location{id: "14095316", latitude: 52.5110893,
+      longitude: 13.4413996, name: "lab.oratory"}]
+  """
+  defdelegate location_search(params), to: Elixtagram.API.Locations, as: :search
+
+  @doc """
+  Takes a Map of search params and an access token.
+  Returns a List of locations (as `Elixtagram.Model.Location`)
+
+  Search params:
+    - distance (in meters, defaults to 1000)
+    - count
+    - lat and lng (must be used together)
+    - facebook_places_id
+    - foursquare_v2_id
+    - foursquare_id (For IDs from Foursquare's (deprecated) v1 API)
+
+  ## Examples
+      iex(1)> Elixtagram.location_search(%{lat: "52.5167", lng: "13.3833", count: 3}, token)
+      [%Elixtagram.Model.Location{id: "1014581914", latitude: 52.516667,
+      longitude: 13.383333, name: "Alemanha"},
+      %Elixtagram.Model.Location{id: "1003437077", latitude: 52.516667,
+      longitude: 13.383333, name: "Njemačka"},
+      %Elixtagram.Model.Location{id: "1014197989", latitude: 52.516667,
+      longitude: 13.383333, name: "Γερμανία"}]
+
+      iex(2)> Elixtagram.location_search(%{facebook_places_id: 1}, token)
+      [%Elixtagram.Model.Location{id: "343525978", latitude: 57.9913,
+      longitude: 56.1355, name: "my home"}]
+
+      iex(3)> Elixtagram.location_search(%{foursquare_v2_id: "4c941c0f03413704fb386fef"}, token)
+      [%Elixtagram.Model.Location{id: "14095316", latitude: 52.5110893,
+      longitude: 13.4413996, name: "lab.oratory"}]
+  """
+  defdelegate location_search(params, token), to: Elixtagram.API.Locations, as: :search
 end

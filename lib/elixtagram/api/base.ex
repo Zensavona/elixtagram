@@ -1,6 +1,14 @@
 defmodule Elixtagram.API.Base do
+  @moduledoc """
+  Provides general request making and handling functionality to
+  more specific parts of the API.
+  """
   @base_url "https://api.instagram.com/v1"
 
+  @doc """
+  General HTTP `GET` request function. Takes a method (:get), url
+  part, and optionally a token and list of params.
+  """
   def request(:get, url_part, token \\ :global, params \\ []) do
     [url_part, params]
       |> build_url(token)

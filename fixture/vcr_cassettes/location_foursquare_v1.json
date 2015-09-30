@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "url": "https://api.instagram.com/v1/locations/search"
+    },
+    "response": {
+      "body": "{\"meta\":{\"code\":200},\"data\":[{\"latitude\":37.338141371,\"id\":\"2781281\",\"longitude\":-121.99382063,\"name\":\"McDonald's\"}]}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4996",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Wed, 30 Sep 2015 16:59:13 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=242a4fae27d7a88a5e58dc14d02c71d3; expires=Wed, 28-Sep-2016 16:59:13 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "117"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

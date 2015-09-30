@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "url": "https://api.instagram.com/v1/locations/search"
+    },
+    "response": {
+      "body": "{\"meta\":{\"code\":200},\"data\":[{\"latitude\":52.516667,\"id\":\"743578595\",\"longitude\":13.383333,\"name\":\"Berliin\"},{\"latitude\":52.516667,\"id\":\"1014197989\",\"longitude\":13.383333,\"name\":\"\\u0393\\u03b5\\u03c1\\u03bc\\u03b1\\u03bd\\u03af\\u03b1\"},{\"latitude\":52.516667,\"id\":\"731163764\",\"longitude\":13.383333,\"name\":\"Berlijn\"},{\"latitude\":52.516667,\"id\":\"742919502\",\"longitude\":13.383333,\"name\":\"Tyskland\"},{\"latitude\":52.516667,\"id\":\"748560096\",\"longitude\":13.383333,\"name\":\"Berlim\"},{\"latitude\":52.516667,\"id\":\"978810200\",\"longitude\":13.383333,\"name\":\"Niemcy\"},{\"latitude\":52.516667,\"id\":\"791225103\",\"longitude\":13.383333,\"name\":\"Berlin\"},{\"latitude\":52.516667,\"id\":\"773129856\",\"longitude\":13.383333,\"name\":\"\\u0628\\u0631\\u0644\\u064a\\u0646\"},{\"latitude\":52.516667,\"id\":\"735670240\",\"longitude\":13.383333,\"name\":\"\\u0413\\u0435\\u0440\\u043c\\u0430\\u043d\\u0438\\u044f\"},{\"latitude\":52.516667,\"id\":\"742217496\",\"longitude\":13.383333,\"name\":\"Berl\\u012bne\"},{\"latitude\":52.516667,\"id\":\"787007653\",\"longitude\":13.383333,\"name\":\"Jerman\"},{\"latitude\":52.516667,\"id\":\"746945823\",\"longitude\":13.383333,\"name\":\"Berlino\"},{\"latitude\":52.516667,\"id\":\"869244415\",\"longitude\":13.383333,\"name\":\"N\\u00e9metorsz\\u00e1g\"},{\"latitude\":52.516667,\"id\":\"750416454\",\"longitude\":13.383333,\"name\":\"\\u0411\\u0435\\u0440\\u043b\\u0438\\u043d\"},{\"latitude\":52.516667,\"id\":\"862067278\",\"longitude\":13.383333,\"name\":\"Vokietija\"},{\"latitude\":52.516667,\"id\":\"780769016\",\"longitude\":13.383333,\"name\":\"\\u041d\\u0456\\u043c\\u0435\\u0447\\u0447\\u0438\\u043d\\u0430\"},{\"latitude\":52.516667,\"id\":\"924138473\",\"longitude\":13.383333,\"name\":\"Alemanya\"},{\"latitude\":52.516667,\"id\":\"789639480\",\"longitude\":13.383333,\"name\":\"Berliini\"},{\"latitude\":52.516667,\"id\":\"727778445\",\"longitude\":13.383333,\"name\":\"Duitsland\"},{\"latitude\":52.516667,\"id\":\"727523302\",\"longitude\":13.383333,\"name\":\"\\u0413\\u0435\\u0440\\u043c\\u0430\\u043d\\u0438\\u044f\"},{\"latitude\":52.516667,\"id\":\"872621688\",\"longitude\":13.383333,\"name\":\"Tyskland\"},{\"latitude\":52.516667,\"id\":\"737982534\",\"longitude\":13.383333,\"name\":\"Almanya\"},{\"latitude\":52.516667,\"id\":\"845289173\",\"longitude\":13.383333,\"name\":\"\\u0622\\u0644\\u0645\\u0627\\u0646\"},{\"latitude\":52.516667,\"id\":\"1014581914\",\"longitude\":13.383333,\"name\":\"Alemanha\"},{\"latitude\":52.516667,\"id\":\"726505759\",\"longitude\":13.383333,\"name\":\"Deutschland\"},{\"latitude\":52.516667,\"id\":\"1003437077\",\"longitude\":13.383333,\"name\":\"Njema\\u010dka\"},{\"latitude\":52.516666667,\"id\":\"924253918\",\"longitude\":13.383333333,\"name\":\"Berlin\"},{\"latitude\":52.516666667,\"id\":\"936638212\",\"longitude\":13.383333333,\"name\":\"Berlin\"},{\"latitude\":52.516666667,\"id\":\"375921946\",\"longitude\":13.383333333,\"name\":\"Terra Sports\"},{\"latitude\":52.516666667,\"id\":\"974104456\",\"longitude\":13.383333333,\"name\":\"Berlin\"}]}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4997",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language, Accept-Encoding",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Wed, 30 Sep 2015 16:59:12 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=89106be567087ad749afffa59da33f47; expires=Wed, 28-Sep-2016 16:59:12 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "2708"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

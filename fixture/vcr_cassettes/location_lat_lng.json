@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "url": "https://api.instagram.com/v1/locations/search"
+    },
+    "response": {
+      "body": "{\"meta\":{\"code\":200},\"data\":[{\"latitude\":1.0,\"id\":\"1002902273\",\"longitude\":2.0,\"name\":\"Test 1237894\"}]}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4999",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Wed, 30 Sep 2015 16:15:14 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=c4f37739cb5a20d1aea0b07a3323afea; expires=Wed, 28-Sep-2016 16:15:14 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "103"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

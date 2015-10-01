@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "delete",
+      "options": [],
+      "url": "https://api.instagram.com/v1/media/1075894327634310197_2183820012/likes"
+    },
+    "response": {
+      "body": "{\"meta\":{\"error_type\":\"OAuthPermissionsException\",\"code\":400,\"error_message\":\"This request requires scope=likes, but this access token is not authorized with this scope. The user must re-authorize your application with scope=likes to be granted write permissions.\"}}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4988",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Thu, 01 Oct 2015 14:25:11 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=6507604a8ae6dee9f385b6454c32faf7; expires=Thu, 29-Sep-2016 14:25:11 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "266"
+      },
+      "status_code": 400,
+      "type": "ok"
+    }
+  }
+]

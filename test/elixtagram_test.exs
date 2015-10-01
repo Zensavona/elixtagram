@@ -3,6 +3,7 @@ defmodule ElixtagramTest do
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
   setup_all do
+    ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes", "fixture/custom_cassettes")
     ExVCR.Config.filter_url_params(true)
     ExVCR.Config.filter_sensitive_data("oauth_signature=[^\"]+", "<REMOVED>")
     ExVCR.Config.filter_sensitive_data("client_id=.+;", "<REMOVED>")
@@ -518,6 +519,86 @@ defmodule ElixtagramTest do
     use_cassette "user_media_liked_auth_explicit" do
       medias = Elixtagram.user_media_liked(%{count: 3}, token)
       assert length(medias) == 3
+    end
+  end
+
+  test "get likes on a media item (unauthenticated)" do
+    use_cassette "media_likes" do
+      likes = Elixtagram.media_likes("1075894327634310197_2183820012")
+      assert length(likes) > 0
+    end
+  end
+
+  test "get likes on a media item (implicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "media_likes_auth_implicit" do
+      likes = Elixtagram.media_likes("1075894327634310197_2183820012", :global)
+      assert length(likes) > 0
+    end
+  end
+
+  test "get likes on a media item (explicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "media_likes_auth_explicit" do
+      likes = Elixtagram.media_likes("1075894327634310197_2183820012", token)
+      assert length(likes) > 0
+    end
+  end
+
+  # these tests are kind of bullshit because I don't have access to special
+  # scopes on Instagram's API and thus can't capture real responses, I'm
+  # working on the assumption their API docs are accurate.
+
+  test "like media as user (implicitly authenticated)" do
+    Elixtagram.configure(:global, "XXXXXXXXXX")
+    use_cassette "like_media", custom: true do
+      like = Elixtagram.like_media("1234567890", :global)
+      assert like == :ok
+    end
+  end
+
+  test "like media as user (explicitly authenticated)" do
+    use_cassette "like_media", custom: true do
+      like = Elixtagram.like_media("1234567890", "XXXXXXXXXX")
+      assert like == :ok
+    end
+  end
+
+  test "like media as user (scope failure)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "like_media_scope_exception" do
+      assert_raise Elixtagram.Error, fn ->
+        Elixtagram.like_media("1075894327634310197_2183820012", token)
+      end
+    end
+  end
+
+  test "unlike media as user (implicitly authenticated)" do
+    Elixtagram.configure(:global, "XXXXXXXXXX")
+    use_cassette "unlike_media", custom: true do
+      like = Elixtagram.unlike_media("1234567890", :global)
+      assert like == :ok
+    end
+  end
+
+  test "unlike media as user (explicitly authenticated)" do
+    use_cassette "unlike_media", custom: true do
+      like = Elixtagram.unlike_media("1234567890", "XXXXXXXXXX")
+      assert like == :ok
+    end
+  end
+
+  test "unlike media as user (scope failure)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "unlike_media_scope_exception" do
+      assert_raise Elixtagram.Error, fn ->
+        Elixtagram.unlike_media("1075894327634310197_2183820012", token)
+      end
     end
   end
 end

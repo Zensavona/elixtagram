@@ -1,5 +1,5 @@
 %{"dotenv": {:hex, :dotenv, "1.0.0"},
-  "ex_doc": {:git, "git://github.com/elixir-lang/ex_doc.git", "0fecfe9f7d084005967863f082c60ce31f528151", []},
+  "ex_doc": {:hex, :ex_doc, "0.10.0"},
   "exactor": {:hex, :exactor, "2.2.0"},
   "excoveralls": {:hex, :excoveralls, "0.3.11"},
   "exjsx": {:hex, :exjsx, "3.2.0"},

@@ -48,7 +48,7 @@ defmodule Elixtagram.Mixfile do
     [
       licenses: ["MIT"],
       keywords: ["Elixir", "Instagram", "REST", "HTTP"],
-      maintainers: [[name: "Zen Savona", email: "z@zen.id.au"]],
+      maintainers: ["Zen Savona"],
       links: %{"GitHub" => "https://github.com/zensavona/elixtagram",
                "Docs" => "https://hexdocs.pm/elixtagram"}
     ]

@@ -152,9 +152,9 @@ defmodule Elixtagram do
   Returns the n latest items in that tag
 
   Search params:
-    - count
-    - min_tag_id
-    - max_tag_id
+  * count
+  * min_tag_id
+  * max_tag_id
 
   If a global access token was set with `Elixtagram.configure(:global, token)`, this
   will be defaulted to, otherwise the client ID is used.
@@ -171,9 +171,9 @@ defmodule Elixtagram do
   Returns the n latest items in that tag
 
   Search params:
-    - count
-    - min_tag_id
-    - max_tag_id
+  * count
+  * min_tag_id
+  * max_tag_id
 
   If a global access token was set with `Elixtagram.configure(:global, token)`, this
   will be defaulted to, otherwise the client ID is used.
@@ -212,14 +212,14 @@ defmodule Elixtagram do
 
   @doc """
   Takes a location id and a Map of params.
-  Returns a List of recent media (as `Elixtagram.Model.Media`)
+  Returns a List of recent media (as `%Elixtagram.Model.Media`)
 
   Search params:
-    - count
-    - min_timestamp
-    - max_timestamp
-    - min_id
-    - max_id
+  * count
+  * min_timestamp
+  * max_timestamp
+  * min_id
+  * max_id
 
   ## Example
       iex(1)> Elixtagram.location_recent_media(1, %{count: 1})
@@ -229,14 +229,15 @@ defmodule Elixtagram do
 
   @doc """
   Takes a location id a Map of params and an access token.
-  Returns a List of recent media (as `Elixtagram.Model.Media`)
+  Returns a List of recent media (as `%Elixtagram.Model.Media`)
 
   Search params:
-    - count
-    - min_timestamp
-    - max_timestamp
-    - min_id
-    - max_id
+
+  * count
+  * min_timestamp
+  * max_timestamp
+  * min_id
+  * max_id
 
   ## Example
       iex(1)> Elixtagram.location_recent_media(1, %{count: 1})
@@ -246,15 +247,15 @@ defmodule Elixtagram do
 
   @doc """
   Takes a Map of search params.
-  Returns a List of locations (as `Elixtagram.Model.Location`)
+  Returns a List of locations (as `%Elixtagram.Model.Location`)
 
   Search params:
-    - distance (in meters, defaults to 1000)
-    - count
-    - lat and lng (must be used together)
-    - facebook_places_id
-    - foursquare_v2_id
-    - foursquare_id (For IDs from Foursquare's (deprecated) v1 API)
+  * distance (in meters, defaults to 1000)
+  * count
+  * lat and lng (must be used together)
+  * facebook_places_id
+  * foursquare_v2_id
+  * foursquare_id (For IDs from Foursquare's (deprecated) v1 API)
 
   ## Examples
       iex(1)> Elixtagram.location_search(%{lat: "52.5167", lng: "13.3833", count: 3})
@@ -277,15 +278,16 @@ defmodule Elixtagram do
 
   @doc """
   Takes a Map of search params and an access token.
-  Returns a List of locations (as `Elixtagram.Model.Location`)
+  Returns a List of locations (as `%Elixtagram.Model.Location`)
 
   Search params:
-    - distance (in meters, defaults to 1000)
-    - count
-    - lat and lng (must be used together)
-    - facebook_places_id
-    - foursquare_v2_id
-    - foursquare_id (For IDs from Foursquare's (deprecated) v1 API)
+
+  * distance (in meters, defaults to 1000)
+  * count
+  * lat and lng (must be used together)
+  * facebook_places_id
+  * foursquare_v2_id
+  * foursquare_id (For IDs from Foursquare's (deprecated) v1 API)
 
   ## Examples
       iex(1)> Elixtagram.location_search(%{lat: "52.5167", lng: "13.3833", count: 3}, token)
@@ -305,4 +307,94 @@ defmodule Elixtagram do
       longitude: 13.4413996, name: "lab.oratory"}]
   """
   defdelegate location_search(params, token), to: Elixtagram.API.Locations, as: :search
+
+  @doc """
+  Takes a media id and returns a `%Elixtagram.Model.Media`
+
+  ## Example
+      iex(1)> Elixtagram.media("XXXXXXXXXXXXXXXXXXXX")
+      %Elixtagram.Model.Media{...}
+  """
+  defdelegate media(media_id), to: Elixtagram.API.Media, as: :media
+
+  @doc """
+  Takes a media id and an access token, returns a `%Elixtagram.Model.Media`
+
+  ## Example
+      iex(1)> Elixtagram.media("XXXXXXXXXXXXXXXXXXXX", token)
+      %Elixtagram.Model.Media{...}
+  """
+  defdelegate media(media_id, token), to: Elixtagram.API.Media, as: :media
+
+  @doc """
+  Takes a media shortcode and returns a `%Elixtagram.Model.Media`
+
+  ## Example
+      iex(1)> Elixtagram.media("D")
+      %Elixtagram.Model.Media{...}
+  """
+  defdelegate media_shortcode(shortcode), to: Elixtagram.API.Media, as: :shortcode
+
+  @doc """
+  Takes a media shortcode and an access token, returns a `%Elixtagram.Model.Media`
+
+  ## Example
+      iex(1)> Elixtagram.media("D", token)
+      %Elixtagram.Model.Media{...}
+  """
+  defdelegate media_shortcode(shortcode, token), to: Elixtagram.API.Media, as: :shortcode
+
+  @doc """
+  Searches for media based on the location params Map provided, returns a list of media (as `%Elixtagram.Model.Media`)
+
+  Search params:
+
+  * count
+  * lat and lng (must be supplied)
+  * distance (in meters, defaults to 1000)
+  * min_timestamp
+  * max_timestamp
+
+  ## Examples
+      iex(1)> Elixtagram.media_search(%{lat: 1, lng: 2, count: 1})
+      [%Elixtagram.Model.Media{...}]
+  """
+  defdelegate media_search(params), to: Elixtagram.API.Media, as: :search
+
+  @doc """
+  Searches for media based on the location params Map provided, returns a list of media (as `%Elixtagram.Model.Media`).
+  Takes a Map of location params and an access token.
+
+  Search params:
+
+  * count
+  * lat and lng (must be supplied)
+  * distance (in meters, defaults to 1000)
+  * min_timestamp
+  * max_timestamp
+
+  ## Examples
+      iex(1)> Elixtagram.media_search(%{lat: 1, lng: 2, count: 1}, token)
+      [%Elixtagram.Model.Media{...}]
+  """
+  defdelegate media_search(params, token), to: Elixtagram.API.Media, as: :search
+
+  @doc """
+  Takes a number of items to get, returns a List of n popular media items (as `%Elixtagram.Model.Media`).
+
+  ## Example
+      iex(1)> Elixtagram.media_popular(1)
+      [%Elixtagram.Model.Media{...}]
+  """
+  defdelegate media_popular(count), to: Elixtagram.API.Media, as: :popular
+
+  @doc """
+  Takes a number of items to get and an access token.
+  Returns a List of n popular media items (as `%Elixtagram.Model.Media`).
+
+  ## Example
+      iex(1)> Elixtagram.media_popular(1, token)
+      [%Elixtagram.Model.Media{...}]
+  """
+  defdelegate media_popular(count, token), to: Elixtagram.API.Media, as: :popular
 end

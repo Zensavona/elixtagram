@@ -22,7 +22,7 @@ defmodule Elixtagram.API.Locations do
     - min_id
     - max_id
   """
-  def recent_media(location_id, params \\ [], token \\ :global) do
+  def recent_media(location_id, params \\ %{}, token \\ :global) do
     accepted = [:count, :min_timestamp, :max_timestamp, :min_id, :max_id]
     request_params = parse_request_params(params, accepted)
     request(:get, "/locations/#{location_id}/media/recent", token, request_params).data |> Enum.map(&parse_media/1)

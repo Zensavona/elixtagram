@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "url": "https://api.instagram.com/v1/users/search"
+    },
+    "response": {
+      "body": "{\"meta\":{\"code\":200},\"data\":[{\"username\":\"zenm8\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xaf1\\/t51.2885-19\\/s150x150\\/11856601_1483869585265582_942748740_a.jpg\",\"id\":\"35822824\",\"full_name\":\"Zen Savona\"},{\"username\":\"zendaya\",\"profile_picture\":\"https:\\/\\/igcdn-photos-g-a.akamaihd.net\\/hphotos-ak-xaf1\\/t51.2885-19\\/s150x150\\/12070755_521718651329582_328866654_a.jpg\",\"id\":\"9777455\",\"full_name\":\"Zendaya\"},{\"username\":\"zencrystals\",\"profile_picture\":\"https:\\/\\/igcdn-photos-f-a.akamaihd.net\\/hphotos-ak-prn\\/t51.2885-19\\/10903508_586297044848565_1008017697_a.jpg\",\"id\":\"575021\",\"full_name\":\"\\ud83d\\ude4f Zen Crystal Shop \\ud83d\\udd2e\"},{\"username\":\"zenbelly\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xaf1\\/t51.2885-19\\/11252365_1467332690244765_7651516_a.jpg\",\"id\":\"49036181\",\"full_name\":\"Zenbelly\"}]}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4994",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language, Accept-Encoding",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Thu, 01 Oct 2015 10:43:36 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=3507ff6498d9bb0bed523f973e604d74; expires=Thu, 29-Sep-2016 10:43:36 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "847"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

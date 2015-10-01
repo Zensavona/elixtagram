@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "url": "https://api.instagram.com/v1/users/self"
+    },
+    "response": {
+      "body": "{\"meta\":{\"code\":200},\"data\":{\"username\":\"zenm8\",\"bio\":\"\\ud83c\\udf37 Whole Food Plant Based Nutrition\\n\\ud83c\\udfc2 Powerful Functional Strength \\u0026 Fitness\\n\\ud83c\\udf0f Digital Nomad\\n\\ud83d\\udc08 Animal Lover\\n\\ud83d\\ude38Berlin\\u2668\\ufe0fChiang Mai\\ud83c\\udde6\\ud83c\\uddfaBrisbane\",\"website\":\"http:\\/\\/zen.id.au\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xaf1\\/t51.2885-19\\/s150x150\\/11856601_1483869585265582_942748740_a.jpg\",\"full_name\":\"Zen Savona\",\"counts\":{\"media\":613,\"followed_by\":3966,\"follows\":4915},\"id\":\"35822824\"}}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4990",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language, Accept-Encoding",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Thu, 01 Oct 2015 09:42:05 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=75425557b6cba526b68495e4bedbb6db; expires=Thu, 29-Sep-2016 09:42:05 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "555"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

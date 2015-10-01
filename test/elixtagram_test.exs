@@ -357,4 +357,167 @@ defmodule ElixtagramTest do
       assert length(popular) == 50
     end
   end
+
+  test "get a user by id (unauthenticated)" do
+    user_id = 35822824
+    use_cassette "user" do
+      user = Elixtagram.user(user_id)
+      assert user.id == to_string(user_id)
+    end
+  end
+
+  test "get a user by id (implicitly authenticated)" do
+    user_id = 35822824
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_auth_implicit" do
+      user = Elixtagram.user(user_id, :global)
+      assert user.id == to_string(user_id)
+    end
+  end
+
+  test "get a user by id (explicitly authenticated)" do
+    user_id = 35822824
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "user_auth_explicit" do
+      user = Elixtagram.user(user_id, token)
+      assert user.id == to_string(user_id)
+    end
+  end
+
+  test "get a user by :self (implicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_self_auth_implicit" do
+      user = Elixtagram.user(:self, :global)
+      assert user.id != nil
+    end
+  end
+
+  test "get a user by :self (explicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "user_self_auth_explicit" do
+      user = Elixtagram.user(:self, token)
+      assert user.id != nil
+    end
+  end
+
+  test "search for users by name (unauthenticated)" do
+    q = "zen"
+    use_cassette "user_search" do
+      users = Elixtagram.user_search(%{q: q, count: 3})
+      assert length(users) == 3
+    end
+  end
+
+  test "search for users by name (implicitly authenticated)" do
+    q = "zen"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_search_auth_implicit" do
+      users = Elixtagram.user_search(%{q: q, count: 3}, :global)
+      assert length(users) == 3
+    end
+  end
+
+  test "search for users by name (explicitly authenticated)" do
+    q = "zen"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "user_search_auth_explicit" do
+      users = Elixtagram.user_search(%{q: q, count: 3}, token)
+      assert length(users) == 3
+    end
+  end
+
+  test "get recent media for user (unauthenticated)" do
+    id = 35822824
+    use_cassette "user_recent_media" do
+      medias = Elixtagram.user_recent_media(id, %{count: 3})
+      assert length(medias) == 3
+    end
+  end
+
+  test "get recent media for user (implicitly authenticated)" do
+    id = 35822824
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_recent_media_auth_implicit" do
+      medias = Elixtagram.user_recent_media(id, %{count: 3}, :global)
+      assert length(medias) == 3
+    end
+  end
+
+  test "get recent media for user (explicitly authenticated)" do
+    id = 35822824
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "user_recent_media_auth_explicit" do
+      medias = Elixtagram.user_recent_media(id, %{count: 3}, token)
+      assert length(medias) == 3
+    end
+  end
+
+  test "get recent media for user with :self (implicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_recent_media_self_auth_implicit" do
+      medias = Elixtagram.user_recent_media(:self, %{count: 3}, :global)
+      assert length(medias) == 3
+    end
+  end
+
+  test "get recent media for user with :self (explicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "user_recent_media_self_auth_explicit" do
+      medias = Elixtagram.user_recent_media(:self, %{count: 3}, token)
+      assert length(medias) == 3
+    end
+  end
+
+  test "get feed for user (implicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_feed_auth_implicit" do
+      medias = Elixtagram.user_feed(%{count: 3}, :global)
+      assert length(medias) == 3
+    end
+  end
+
+  test "get feed for user (explicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "user_feed_auth_explicit" do
+      medias = Elixtagram.user_feed(%{count: 3}, token)
+      assert length(medias) == 3
+    end
+  end
+
+  test "get liked media for user (implicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_media_liked_auth_implicit" do
+      medias = Elixtagram.user_media_liked(%{count: 3}, :global)
+      assert length(medias) == 3
+    end
+  end
+
+  test "get liked media for user (explicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "user_media_liked_auth_explicit" do
+      medias = Elixtagram.user_media_liked(%{count: 3}, token)
+      assert length(medias) == 3
+    end
+  end
 end

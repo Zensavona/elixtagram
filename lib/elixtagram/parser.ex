@@ -24,6 +24,21 @@ defmodule Elixtagram.Parser do
     struct(Elixtagram.Model.Comment, object)
   end
 
+  def parse_relationship(object) do
+    struct(Elixtagram.Model.Relationship, object)
+  end
+
+  def parse_relationship_response(object) do
+    case object do
+      %{outgoing_status: "none"} ->
+        :ok
+      %{outgoing_status: status} ->
+        String.to_atom(status) 
+      _ ->
+        :ok
+    end
+  end
+
   @doc """
   Parse request parameters for the API.
   """

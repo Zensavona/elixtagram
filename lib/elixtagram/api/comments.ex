@@ -16,7 +16,7 @@ defmodule Elixtagram.API.Comments do
   Posts a comment to a media item
   """
   def comment(media_id, text, token \\ :global) do
-    post("/media/#{media_id}/comments", token, String.replace(text, " ", "+"))
+    post("/media/#{media_id}/comments", token, "text=" <> String.replace(text, " ", "+"))
     :ok
   end
 

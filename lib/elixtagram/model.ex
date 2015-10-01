@@ -32,3 +32,7 @@ end
 defmodule Elixtagram.Model.Comment do
   defstruct id: nil, created_time: nil, text: nil, from: nil
 end
+
+defmodule Elixtagram.Model.Relationship do
+  defstruct incoming_status: nil, outgoing_status: nil, target_user_is_private: nil
+end

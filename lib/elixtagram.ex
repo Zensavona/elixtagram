@@ -691,5 +691,116 @@ defmodule Elixtagram do
   defdelegate media_comment_delete(media_id, comment_id, token), to: Elixtagram.API.Comments,
                                                                  as: :comment_delete
 
-  # defdelegate
+  @doc """
+  Takes a user id, returns a List of users they follow as `%Elixtagram.Model.UserSearchResult`
+
+  ## Example
+      iex(1)> Elixtagram.user_follows("XXXXXXXXXX")
+      [%Elixtagram.Model.UserSearchResult{full_name: "Dariel 🙈", id: "1782884605",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/s150x150/11296793_1507078476281099_1357579188_a.jpg", username: "dari600"},
+      %Elixtagram.Model.UserSearchResult{full_name: "Sal / Peri", id: "284767950",
+      profile_picture: "https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/s150x150/11349346_422441984620139_1778366224_a.jpg",
+      username: "peri.fu"}, ...]
+  """
+  defdelegate user_follows(user_id), to: Elixtagram.API.Follows, as: :follows
+
+  @doc """
+  Takes a user id and an access token (or `:global`, if configured).
+  Returns a List of users they follow as `%Elixtagram.Model.UserSearchResult`
+
+  ## Example
+      iex(1)> Elixtagram.user_follows("XXXXXXXXXX", :global)
+      [%Elixtagram.Model.UserSearchResult{full_name: "Dariel 🙈", id: "1782884605",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/s150x150/11296793_1507078476281099_1357579188_a.jpg", username: "dari600"},
+      %Elixtagram.Model.UserSearchResult{full_name: "Sal / Peri", id: "284767950",
+      profile_picture: "https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/s150x150/11349346_422441984620139_1778366224_a.jpg",
+      username: "peri.fu"}, ...]
+  """
+  defdelegate user_follows(user_id, token), to: Elixtagram.API.Follows, as: :follows
+
+  @doc """
+  Takes a user id, returns a List of the user's followers as `%Elixtagram.Model.UserSearchResult`
+
+  ## Example
+      iex(1)> Elixtagram.user_followed_by("XXXXXXXXXX")
+      [%Elixtagram.Model.UserSearchResult{full_name: "Dariel 🙈", id: "1782884605",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/s150x150/11296793_1507078476281099_1357579188_a.jpg", username: "dari600"},
+      %Elixtagram.Model.UserSearchResult{full_name: "Sal / Peri", id: "284767950",
+      profile_picture: "https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/s150x150/11349346_422441984620139_1778366224_a.jpg",
+      username: "peri.fu"}, ...]
+  """
+  defdelegate user_followed_by(user_id), to: Elixtagram.API.Follows, as: :followed_by
+
+  @doc """
+  Takes a user id and an access token (or `:global`, if configured).
+  Returns a List of the user's followers as `%Elixtagram.Model.UserSearchResult`
+
+  ## Example
+      iex(1)> Elixtagram.user_followed_by("XXXXXXXXXX", token)
+      [%Elixtagram.Model.UserSearchResult{full_name: "Dariel 🙈", id: "1782884605",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/s150x150/11296793_1507078476281099_1357579188_a.jpg", username: "dari600"},
+      %Elixtagram.Model.UserSearchResult{full_name: "Sal / Peri", id: "284767950",
+      profile_picture: "https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/s150x150/11349346_422441984620139_1778366224_a.jpg",
+      username: "peri.fu"}, ...]
+  """
+  defdelegate user_followed_by(user_id, token), to: Elixtagram.API.Follows, as: :followed_by
+
+  @doc """
+  Takes an access token and returns a List of users who have requested to follow the user
+  (but haven't yet been accepted) as `%Elixtagram.Model.UserSearchResult`
+
+  ## Example
+      iex(1)> Elixtagram.user_requested_by(token)
+      [%Elixtagram.Model.UserSearchResult{full_name: "Dariel 🙈", id: "1782884605",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/s150x150/11296793_1507078476281099_1357579188_a.jpg", username: "dari600"},
+      %Elixtagram.Model.UserSearchResult{full_name: "Sal / Peri", id: "284767950",
+      profile_picture: "https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/s150x150/11349346_422441984620139_1778366224_a.jpg",
+      username: "peri.fu"}, ...]
+  """
+  defdelegate user_requested_by(token), to: Elixtagram.API.Follows, as: :requested_by
+
+  @doc """
+  Takes a user id and an access token, returns the relationship of that user
+  in relation to the current user as a `%Elixtagram.Model.Relationship`.
+
+  ## Example
+      iex(1)> Elixtagram.user_relationship("XXXXXXXX", token)
+      %Elixtagram.Model.Relationship{incoming_status: "followed_by",
+      outgoing_status: "follows", target_user_is_private: false}
+  """
+  defdelegate user_relationship(user_id, token), to: Elixtagram.API.Follows, as: :relationship
+
+  @doc """
+  **Note: To use this you must have access to the `relationships` scope,
+  which is not by accessable without special permission [(more info)][request_scope].**
+
+  [request_scope]: https://help.instagram.com/contact/185819881608116
+
+  Takes a user id, a valid action Atom and an access token, returns the updated status.
+
+  Valid actions:
+
+  * :follow
+  * :unfollow
+  * :block
+  * :unblock
+  * :approve
+  * :ignore
+
+  ## Examples
+      iex(1)> Elixtagram.user_relationship(user_id, :follow, token)
+      :requested
+      iex()> Elixtagram.user_relationship(user_id, :unfollow, token)
+      :ok
+      iex()> Elixtagram.user_relationship(user_id, :block, token)
+      :ok
+      iex()> Elixtagram.user_relationship(user_id, :unblock, token)
+      :ok
+      iex()> Elixtagram.user_relationship(user_id, :approve, token)
+      :follows
+      iex()> Elixtagram.user_relationship(user_id, :ignore, token)
+      :ok
+  """
+  defdelegate user_relationship(user_id, action, token), to: Elixtagram.API.Follows,
+                                                         as: :relationship
 end

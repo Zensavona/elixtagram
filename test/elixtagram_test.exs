@@ -601,4 +601,99 @@ defmodule ElixtagramTest do
       end
     end
   end
+
+  test "get comments on a media item (unauthenticated)" do
+    id = "1072892704941941781_35822824"
+    use_cassette "comments" do
+      comments = Elixtagram.comments(id)
+      assert length(comments) > 0
+    end
+  end
+
+  test "get comments on a media item (implicitly authenticated)" do
+    id = "1072892704941941781_35822824"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "comments_auth_implicit" do
+      comments = Elixtagram.comments(id, :global)
+      assert length(comments) > 0
+    end
+  end
+
+  test "get comments on a media item (explicitly authenticated)" do
+    id = "1072892704941941781_35822824"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "comments_auth_explicit" do
+      comments = Elixtagram.comments(id, token)
+      assert length(comments) > 0
+    end
+  end
+
+  test "post comment to media item (explicitly authenticated)" do
+    id = "XXXXXXXXXXX"
+    comment = "Nice pic m8"
+
+    use_cassette "comment", custom: true do
+      result = Elixtagram.comment(id, comment, "XXXXXXXXXXX")
+      assert result == :ok
+    end
+  end
+
+  test "post comment to media item (implicitly authenticated)" do
+    id = "XXXXXXXXXXX"
+    comment = "Nice pic m8"
+    Elixtagram.configure(:global, "XXXXXXXXXXX")
+
+    use_cassette "comment", custom: true do
+      result = Elixtagram.comment(id, comment, :global)
+      assert result == :ok
+    end
+  end
+
+  test "post comment to media item (scope failure)" do
+    id = "1072892704941941781_35822824"
+    comment = "Nice pic m8"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "comment_scope_exception" do
+      assert_raise Elixtagram.Error, fn ->
+        Elixtagram.comment(id, comment, token)
+      end
+    end
+  end
+
+  test "delete comment from media item (explicitly authenticated)" do
+    media_id = "XXXXXXXXXXX"
+    comment_id = "XXXXXXXXXXX"
+
+    use_cassette "comment_delete", custom: true do
+      result = Elixtagram.comment_delete(media_id, comment_id, "XXXXXXXXXX")
+      assert result == :ok
+    end
+  end
+
+  test "delete comment from media item (implicitly authenticated)" do
+    media_id = "XXXXXXXXXXX"
+    comment_id = "XXXXXXXXXXX"
+    Elixtagram.configure(:global, "XXXXXXXXXX")
+
+    use_cassette "comment_delete", custom: true do
+      result = Elixtagram.comment_delete(media_id, comment_id, :global)
+      assert result == :ok
+    end
+  end
+
+  test "delete comment from media item (scope failure)" do
+    media_id = "1072892704941941781_35822824"
+    comment_id = "1072905761030153596"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "comment_delete_scope_exception" do
+      assert_raise Elixtagram.Error, fn ->
+        Elixtagram.comment_delete(media_id, comment_id, token)
+      end
+    end
+  end
 end

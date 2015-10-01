@@ -1,0 +1,27 @@
+[
+  {
+    "request": {
+      "method": "delete",
+      "url": "https://api.instagram.com/v1/media/XXXXXXXXXXX/comments/XXXXXXXXXXX?access_token=XXXXXXXXXX"
+    },
+    "response": {
+      "body": "{\"meta\":{\"code\":200},\"data\":null}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4997",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Tue, 29 Sep 2015 15:44:22 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=63e86758f6acf3d1c013d8b5319f9798; expires=Tue, 27-Sep-2016 15:44:22 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "73"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

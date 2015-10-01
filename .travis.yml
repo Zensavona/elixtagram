@@ -4,6 +4,7 @@ elixir:
   - 1.0.5
 otp_release:
   - 17.1
-script:
-  - MIX_ENV=docs mix do deps.get, inch.report
+after_script:
+  - MIX_ENV=docs mix deps.get
+  - MIX_ENV=docs mix inch.report
   - MIX_ENV=test mix do deps.get, compile, coveralls.travis

@@ -2,15 +2,18 @@ defmodule Elixtagram.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :elixtagram,
-     version: "0.0.1",
-     elixir: "~> 1.0",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     description: description,
-     package: package,
-     test_coverage: [tool: ExCoveralls],
-     deps: deps]
+    [
+      app: :elixtagram,
+       version: "0.1.0",
+       elixir: "~> 1.0",
+       build_embedded: Mix.env == :prod,
+       start_permanent: Mix.env == :prod,
+       description: description,
+       package: package,
+       test_coverage: [tool: ExCoveralls],
+       deps: deps,
+       docs: [extras: ["README.md"]]
+    ]
   end
 
   def application do
@@ -28,10 +31,10 @@ defmodule Elixtagram.Mixfile do
       {:poison, "~> 1.5"},
       {:oauth2, "~> 0.3"},
       {:exvcr, "~> 0.3", only: [:dev, :test]},
-      {:ex_doc, github: "elixir-lang/ex_doc", only: [:dev, :docs]},
+      {:ex_doc, "~> 0.10.0", only: [:dev, :docs]},
       {:excoveralls, "~> 0.3", only: [:dev, :test]},
       {:inch_ex, "~> 0.4.0", only: [:dev, :docs]},
-      {:dotenv, "~> 1.0.0"}
+      {:dotenv, "~> 1.0.0", only: [:dev, :test]}
     ]
   end
 
@@ -42,8 +45,12 @@ defmodule Elixtagram.Mixfile do
   end
 
   defp package do
-    [ contributors: ["zensavona"],
+    [
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/zensavona/elixtagram"} ]
+      keywords: ["Elixir", "Instagram", "REST", "HTTP"],
+      maintainers: [[name: "Zen Savona", email: "z@zen.id.au"]],
+      links: %{"GitHub" => "https://github.com/zensavona/elixtagram",
+               "Docs" => "https://hexdocs.pm/elixtagram"}
+    ]
   end
 end

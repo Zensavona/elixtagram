@@ -248,6 +248,113 @@ defmodule ElixtagramTest do
       my_other_fave = Elixtagram.location_search(%{foursquare_v2_id: "4c941c0f03413704fb386fef"}, token)
       assert List.first(my_other_fave).name == "lab.oratory"
     end
+  end
 
+  test "get a media item by id (unauthenticated)" do
+    id = "1085620159293161830_430882815"
+    use_cassette "media" do
+      media = Elixtagram.media(id)
+      assert media.id == id
+    end
+  end
+
+  test "get a media item by id (implicitly authenticated)" do
+    id = "1085620159293161830_430882815"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "media_auth_implicit" do
+      media = Elixtagram.media(id, :global)
+      assert media.id == id
+    end
+  end
+
+  test "get a media item by id (explicitly authenticated)" do
+    id = "1085620159293161830_430882815"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    use_cassette "media_auth_explicit" do
+      media = Elixtagram.media(id, token)
+      assert media.id == id
+    end
+  end
+
+  test "get a media item by shortcode (unauthenticated)" do
+    shortcode = "D"
+    use_cassette "media_shortcode" do
+      media = Elixtagram.media_shortcode(shortcode)
+      assert media.user.username == "kevin"
+    end
+  end
+
+  test "get a media item by shortcode (implicitly authenticated)" do
+    shortcode = "D"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "media_shortcode_auth_implicit" do
+      media = Elixtagram.media_shortcode(shortcode, :global)
+      assert media.user.username == "kevin"
+    end
+  end
+
+  test "get a media item by shortcode (explicitly authenticated)" do
+    shortcode = "D"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    use_cassette "media_shortcode_auth_explicit" do
+      media = Elixtagram.media_shortcode(shortcode, token)
+      assert media.user.username == "kevin"
+    end
+  end
+
+  test "search for media by location (unauthenticated)" do
+    use_cassette "media_search" do
+      medias = Elixtagram.media_search(%{lat: 1, lng: 2, count: 10})
+      assert length(medias) == 10
+    end
+  end
+
+  test "search for media by location (implicit authentication)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "media_search_auth_implicit" do
+      medias = Elixtagram.media_search(%{lat: 1, lng: 2, count: 10}, :global)
+      assert length(medias) == 10
+    end
+  end
+
+  test "search for media by location (explicit authentication)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "media_search_auth_explicit" do
+      medias = Elixtagram.media_search(%{lat: 1, lng: 2, count: 10}, token)
+      assert length(medias) == 10
+    end
+  end
+
+  test "get popular media items (unauthenticated)" do
+    use_cassette "media_popular" do
+      popular = Elixtagram.media_popular(50)
+      assert length(popular) == 50
+    end
+  end
+
+  test "get popular media items (implicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "media_popular_auth_implicit" do
+      popular = Elixtagram.media_popular(50, :global)
+      assert length(popular) == 50
+    end
+  end
+
+  test "get popular media items (explicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "media_popular_auth_explicit" do
+      popular = Elixtagram.media_popular(50, token)
+      assert length(popular) == 50
+    end
   end
 end

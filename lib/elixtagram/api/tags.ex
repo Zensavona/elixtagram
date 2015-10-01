@@ -10,7 +10,7 @@ defmodule Elixtagram.API.Tags do
   optionally take an access token.
   """
   def tag(tag_name, token \\ :global) do
-    request(:get, "/tags/#{tag_name}", token).data |> parse_tag
+    get("/tags/#{tag_name}", token).data |> parse_tag
   end
 
   @doc """
@@ -18,7 +18,7 @@ defmodule Elixtagram.API.Tags do
   Optionally take an access token.
   """
   def search(query, token \\ :global) do
-    request(:get, "/tags/search", token, [["q", query]]).data |> Enum.map(&parse_tag/1)
+    get("/tags/search", token, [["q", query]]).data |> Enum.map(&parse_tag/1)
   end
 
   @doc """
@@ -28,6 +28,6 @@ defmodule Elixtagram.API.Tags do
   def recent_media(tag_name, params, token \\ :global) do
     accepted = [:count, :min_tag_id, :max_tag_id]
     request_params = parse_request_params(params, accepted)
-    request(:get, "/tags/#{tag_name}/media/recent", token, request_params).data |> Enum.map(&parse_media(&1))
+    get("/tags/#{tag_name}/media/recent", token, request_params).data |> Enum.map(&parse_media(&1))
   end
 end

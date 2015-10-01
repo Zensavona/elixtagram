@@ -10,7 +10,7 @@ defmodule Elixtagram.API.Locations do
   Optionally take an access token.
   """
   def location(location_id, token \\ :global) do
-    request(:get, "/locations/#{location_id}", token).data |> parse_location
+    get("/locations/#{location_id}", token).data |> parse_location
   end
 
   @doc """
@@ -25,7 +25,7 @@ defmodule Elixtagram.API.Locations do
   def recent_media(location_id, params \\ %{}, token \\ :global) do
     accepted = [:count, :min_timestamp, :max_timestamp, :min_id, :max_id]
     request_params = parse_request_params(params, accepted)
-    request(:get, "/locations/#{location_id}/media/recent", token, request_params).data |> Enum.map(&parse_media/1)
+    get("/locations/#{location_id}/media/recent", token, request_params).data |> Enum.map(&parse_media/1)
   end
 
   @doc """
@@ -51,6 +51,6 @@ defmodule Elixtagram.API.Locations do
         [:lat, :lng] ++ universally_accepted
     end
     params = parse_request_params(params, accepted)
-    request(:get, "/locations/search", token, params).data |> Enum.map(&parse_location/1)
+    get("/locations/search", token, params).data |> Enum.map(&parse_location/1)
   end
 end

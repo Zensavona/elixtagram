@@ -9,14 +9,14 @@ defmodule Elixtagram.API.Media do
   Fetches a media item from the Instagram API by id.
   """
   def media(media_id, token \\ :global) do
-    request(:get, "/media/#{media_id}", token).data |> parse_media
+    get("/media/#{media_id}", token).data |> parse_media
   end
 
   @doc """
   Fetches a media item from the Instagram API by shortcode.
   """
   def shortcode(shortcode, token \\ :global) do
-    request(:get, "/media/shortcode/#{shortcode}", token).data |> parse_media
+    get("/media/shortcode/#{shortcode}", token).data |> parse_media
   end
 
   @doc """
@@ -25,13 +25,13 @@ defmodule Elixtagram.API.Media do
   def search(params, token \\ :global) do
     accepted_params = [:distance, :count, :min_timestamp, :max_timestamp, :lat, :lng]
     params = parse_request_params(params, accepted_params)
-    request(:get, "/media/search", token, params).data |> Enum.map(&parse_media/1)
+    get("/media/search", token, params).data |> Enum.map(&parse_media/1)
   end
 
   @doc """
   Fetches popular media
   """
   def popular(count, token \\ :global) do
-    request(:get, "/media/popular", token, [["count", count]]).data |> Enum.map(&parse_media/1)
+    get("/media/popular", token, [["count", count]]).data |> Enum.map(&parse_media/1)
   end
 end

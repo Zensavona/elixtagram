@@ -308,6 +308,9 @@ defmodule Elixtagram do
   """
   defdelegate location_search(params, token), to: Elixtagram.API.Locations, as: :search
 
+  ## ---------- Media
+
+
   @doc """
   Takes a media id and returns a `%Elixtagram.Model.Media`
 
@@ -397,6 +400,8 @@ defmodule Elixtagram do
       [%Elixtagram.Model.Media{...}]
   """
   defdelegate media_popular(count, token), to: Elixtagram.API.Media, as: :popular
+
+  ## ---------- Users
 
   @doc """
   Takes a user id and returns a `%Elixtagram.Model.User`.
@@ -527,4 +532,59 @@ defmodule Elixtagram do
       [%Elixtagram.Model.Media{...}, %Elixtagram.Model.Media{...}]
   """
   defdelegate user_media_liked(params, token), to: Elixtagram.API.Users, as: :media_liked
+
+  ## ---------- Likes
+
+  @doc """
+  Takes a media id and returns a List of users who liked the media as `%Elixtagram.Model.UserSearchResult`
+
+  ## Example
+      iex(1)> Elixtagram.media_likes("1075894327634310197_2183820012")
+  """
+  defdelegate media_likes(media_id), to: Elixtagram.API.Likes, as: :likes
+
+  @doc """
+  Takes a media id and an access token (or `:global`, if configured).
+  Returns a List of users who liked the media as `%Elixtagram.Model.UserSearchResult`
+
+  ## Example
+      iex(1)> Elixtagram.media_likes("1075894327634310197_2183820012", token)
+  """
+  defdelegate media_likes(media_id, token), to: Elixtagram.API.Likes, as: :likes
+
+  @doc """
+  **Note: To use this you must have access to the `likes` scope,
+  which is not by accessable without special permission [(more info)][request_like_scope].**
+
+  Takes a media id and an access token (or `:global`, if configured).
+  Returns :ok if everything went as expected, throws an error if you don't have the right scope
+
+  [request_like_scope]: https://help.instagram.com/contact/185819881608116
+
+  ## Example
+      iex(1)> Elixtagram.like_media("XXXXXXXX", :global)
+      :ok
+
+      iex(1)> Elixtagram.like_media("XXXXXXXX", :global)
+      ** (Elixtagram.Error) OAuthPermissionsException: This request requires scope=likes, but this access token is not authorized with this scope. The user must re-authorize your application with scope=likes to be granted write permissions.
+  """
+  defdelegate like_media(media_id, token), to: Elixtagram.API.Likes, as: :like
+
+  @doc """
+  **Note: To use this you must have access to the `likes` scope,
+  which is not by accessable without special permission [(more info)][request_like_scope].**
+
+  Takes a media id and an access token (or `:global`, if configured).
+  Returns :ok if everything went as expected, throws an error if you don't have the right scope
+
+  [request_like_scope]: https://help.instagram.com/contact/185819881608116
+
+  ## Example
+      iex(1)> Elixtagram.unlike_media("XXXXXXXX", :global)
+      :ok
+
+      iex(1)> Elixtagram.unlike_media("XXXXXXXX", :global)
+      ** (Elixtagram.Error) OAuthPermissionsException: This request requires scope=likes, but this access token is not authorized with this scope. The user must re-authorize your application with scope=likes to be granted write permissions.
+  """
+  defdelegate unlike_media(media_id, token), to: Elixtagram.API.Likes, as: :unlike
 end

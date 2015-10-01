@@ -5,13 +5,35 @@ defmodule Elixtagram.API.Base do
   @base_url "https://api.instagram.com/v1"
 
   @doc """
-  General HTTP `GET` request function. Takes a method (:get), url
-  part, and optionally a token and list of params.
+  General HTTP `GET` request function. Takes a url part
+  and optionally a token and list of params.
   """
-  def request(:get, url_part, token \\ :global, params \\ []) do
+  def get(url_part, token, params \\ []) do
     [url_part, params]
       |> build_url(token)
       |> HTTPoison.get!
+      |> handle_response
+  end
+
+  @doc """
+  General HTTP `POST` request function. Takes a url part,
+  and optionally a token, data Map and list of params.
+  """
+  def post(url_part, token \\ :global, data \\ "", params \\ []) do
+    [url_part, params]
+      |> build_url(token)
+      |> HTTPoison.post!(data)
+      |> handle_response
+  end
+
+  @doc """
+  General HTTP `DELETE` request function. Takes a url part
+  and optionally a token and list of params.
+  """
+  def delete(url_part, token, params \\ []) do
+    [url_part, params]
+      |> build_url(token)
+      |> HTTPoison.delete!
       |> handle_response
   end
 

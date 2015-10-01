@@ -12,10 +12,18 @@ defmodule Elixtagram.Parser do
     struct(Elixtagram.Model.Location, object)
   end
 
+  def parse_user(object) do
+    struct(Elixtagram.Model.User, object)
+  end
+
+  def parse_user_search_result(object) do
+    struct(Elixtagram.Model.UserSearchResult, object)
+  end
+
   @doc """
   Parse request parameters for the API.
   """
   def parse_request_params(options, accepted) do
-    Enum.filter_map(options, fn({k,v}) -> Enum.member?(accepted, k) end, fn({k,v}) -> [to_string(k), to_string(v)] end)
+    Enum.filter_map(options, fn({k,_}) -> Enum.member?(accepted, k) end, fn({k,v}) -> [to_string(k), to_string(v)] end)
   end
 end

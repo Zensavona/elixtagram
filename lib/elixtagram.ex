@@ -397,4 +397,134 @@ defmodule Elixtagram do
       [%Elixtagram.Model.Media{...}]
   """
   defdelegate media_popular(count, token), to: Elixtagram.API.Media, as: :popular
+
+  @doc """
+  Takes a user id and returns a `%Elixtagram.Model.User`.
+
+  ## Examples
+      iex(1)> Elixtagram.user(35822824)
+      %Elixtagram.Model.User{bio: "🌷 Whole Food Plant Based Nutrition\n🏂 Powerful Functional Strength & Fitness\n🌏 Digital Nomad\n🐈 Animal Lover\n😸Berlin♨️Chiang Mai🇦🇺Brisbane",
+      counts: %{followed_by: 3966, follows: 4915, media: 613}, full_name: "Zen Savona", id: "35822824", profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/s150x150/11856601_1483869585265582_942748740_a.jpg", username: "zenm8", website: "http://zen.id.au"}
+  """
+  defdelegate user(id), to: Elixtagram.API.Users, as: :user
+
+  @doc """
+  Takes a user id or `:self` and an access token (or `:global`, if a global access token has been set with `Elixtagram.configure(:global, token)`) and returns a `%Elixtagram.Model.User`.
+
+
+  ## Examples
+      iex(1)> Elixtagram.user(35822824, token)
+      %Elixtagram.Model.User{bio: "🌷 Whole Food Plant Based Nutrition\n🏂 Powerful Functional Strength & Fitness\n🌏 Digital Nomad\n🐈 Animal Lover\n😸Berlin♨️Chiang Mai🇦🇺Brisbane",
+      counts: %{followed_by: 3966, follows: 4915, media: 613}, full_name: "Zen Savona", id: "35822824", profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/s150x150/11856601_1483869585265582_942748740_a.jpg", username: "zenm8", website: "http://zen.id.au"}
+
+      iex(2)> Elixtagram.user(:self, token)
+      %Elixtagram.Model.User{...}
+
+      iex(3)> Elixtagram.user(:self, :global)
+      %Elixtagram.Model.User{...}
+  """
+  defdelegate user(id, token), to: Elixtagram.API.Users, as: :user
+
+  @doc """
+  Search for users by username. Takes a Map of search params: `q` (query) and optionally, `count`.
+  Returns a List of users as `%Elixtagram.Model.UserSearchResult`.
+
+  ## Example
+      iex(1)> Elixtagram.user_search(%{q: "zen", count: 3})
+      [%Elixtagram.Model.UserSearchResult{full_name: "ZEN", id: "2075537710",
+      profile_picture:"https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/s150x150/11356890_150363411965324_1581305443_a.jpg", username: "zen_pk_official"},
+      %Elixtagram.Model.UserSearchResult{full_name: "ZEN", id: "1444000827",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-19/10732008_1658199007759427_555706599_a.jpg", username: "zen____zen"},
+      %Elixtagram.Model.UserSearchResult{full_name: "Zendaya", id: "215465313",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/11356006_931176226929024_399091265_a.jpg", username: "zendaayamareexox"}]
+  """
+  defdelegate user_search(params), to: Elixtagram.API.Users, as: :search
+
+  @doc """
+  Search for users by username. Takes a Map of search params (`q` (query) and optionally, `count`) and an access token (or :global if set).
+
+  Returns a List of users as `%Elixtagram.Model.UserSearchResult`.
+
+  ## Example
+      iex(1)> Elixtagram.user_search(%{q: "zen", count: 3})
+      [%Elixtagram.Model.UserSearchResult{full_name: "ZEN", id: "2075537710",
+      profile_picture:"https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/s150x150/11356890_150363411965324_1581305443_a.jpg", username: "zen_pk_official"},
+      %Elixtagram.Model.UserSearchResult{full_name: "ZEN", id: "1444000827",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xap1/t51.2885-19/10732008_1658199007759427_555706599_a.jpg", username: "zen____zen"},
+      %Elixtagram.Model.UserSearchResult{full_name: "Zendaya", id: "215465313",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/11356006_931176226929024_399091265_a.jpg", username: "zendaayamareexox"}]
+  """
+  defdelegate user_search(params, token), to: Elixtagram.API.Users, as: :search
+
+  @doc """
+  Takes a user id and a params Map, returns a List of media as `%Elixtagram.Model.Media`
+
+  Search params:
+
+  * count
+  * min_id
+  * max_id
+  * min_timestamp
+  * max_timestamp
+
+  ## Example
+      iex(1)> Elixtagram.user_recent_media(35822824, %{count: 2})
+      [%Elixtagram.Model.Media{...}, %Elixtagram.Model.Media{...}]
+  """
+  defdelegate user_recent_media(user_id, params), to: Elixtagram.API.Users, as: :recent_media
+
+  @doc """
+  Takes a user id (or `:self`, to get media for the user associated with the token) a params Map and access token (or `:global` if a global token has been configured).
+  Returns a List of media as `%Elixtagram.Model.Media`.
+
+  Search params:
+
+  * count
+  * min_id
+  * max_id
+  * min_timestamp
+  * max_timestamp
+
+  ## Example
+      iex(1)> Elixtagram.user_recent_media(35822824, %{count: 2}, :global)
+      [%Elixtagram.Model.Media{...}, %Elixtagram.Model.Media{...}]
+  """
+  defdelegate user_recent_media(user_id, params, token), to: Elixtagram.API.Users, as: :recent_media
+
+  @doc """
+  Takes a Map of params and a token (or `:global` if a global token has been configured).
+  Returns a List of media as `%Elixtagram.Model.Media`
+
+  Search params:
+
+  * count
+  * min_id
+  * max_id
+
+  ## Examples
+      iex(1)> Elixtagram.user_feed(%{count: 2}, :global)
+      [%Elixtagram.Model.Media{...}, %Elixtagram.Model.Media{...}]
+
+      iex(2)> Elixtagram.user_feed(%{count: 2}, "XXXXXXXXXXXXXXXXX")
+      [%Elixtagram.Model.Media{...}, %Elixtagram.Model.Media{...}]
+  """
+  defdelegate user_feed(params, token), to: Elixtagram.API.Users, as: :feed
+
+  @doc """
+  Takes a Map of params and a token (or ':global' if a global token has been configured).
+  Returns a List of media as `%Elixtagram.Model.Media`
+
+  Search params:
+
+  * count
+  * max_like_id
+
+  ## Examples
+      iex(1)> Elixtagram.user_media_liked(%{count: 2}, :global)
+      [%Elixtagram.Model.Media{...}, %Elixtagram.Model.Media{...}]
+
+      iex(2)> Elixtagram.user_media_liked(%{count: 2}, "XXXXXXXXXXXXXXXXX")
+      [%Elixtagram.Model.Media{...}, %Elixtagram.Model.Media{...}]
+  """
+  defdelegate user_media_liked(params, token), to: Elixtagram.API.Users, as: :media_liked
 end

@@ -555,14 +555,14 @@ defmodule ElixtagramTest do
   test "like media as user (implicitly authenticated)" do
     Elixtagram.configure(:global, "XXXXXXXXXX")
     use_cassette "like_media", custom: true do
-      like = Elixtagram.like_media("1234567890", :global)
+      like = Elixtagram.media_like("1234567890", :global)
       assert like == :ok
     end
   end
 
   test "like media as user (explicitly authenticated)" do
     use_cassette "like_media", custom: true do
-      like = Elixtagram.like_media("1234567890", "XXXXXXXXXX")
+      like = Elixtagram.media_like("1234567890", "XXXXXXXXXX")
       assert like == :ok
     end
   end
@@ -572,7 +572,7 @@ defmodule ElixtagramTest do
 
     use_cassette "like_media_scope_exception" do
       assert_raise Elixtagram.Error, fn ->
-        Elixtagram.like_media("1075894327634310197_2183820012", token)
+        Elixtagram.media_like("1075894327634310197_2183820012", token)
       end
     end
   end
@@ -580,14 +580,14 @@ defmodule ElixtagramTest do
   test "unlike media as user (implicitly authenticated)" do
     Elixtagram.configure(:global, "XXXXXXXXXX")
     use_cassette "unlike_media", custom: true do
-      like = Elixtagram.unlike_media("1234567890", :global)
+      like = Elixtagram.media_unlike("1234567890", :global)
       assert like == :ok
     end
   end
 
   test "unlike media as user (explicitly authenticated)" do
     use_cassette "unlike_media", custom: true do
-      like = Elixtagram.unlike_media("1234567890", "XXXXXXXXXX")
+      like = Elixtagram.media_unlike("1234567890", "XXXXXXXXXX")
       assert like == :ok
     end
   end
@@ -597,7 +597,7 @@ defmodule ElixtagramTest do
 
     use_cassette "unlike_media_scope_exception" do
       assert_raise Elixtagram.Error, fn ->
-        Elixtagram.unlike_media("1075894327634310197_2183820012", token)
+        Elixtagram.media_unlike("1075894327634310197_2183820012", token)
       end
     end
   end
@@ -605,7 +605,7 @@ defmodule ElixtagramTest do
   test "get comments on a media item (unauthenticated)" do
     id = "1072892704941941781_35822824"
     use_cassette "comments" do
-      comments = Elixtagram.comments(id)
+      comments = Elixtagram.media_comments(id)
       assert length(comments) > 0
     end
   end
@@ -616,7 +616,7 @@ defmodule ElixtagramTest do
     Elixtagram.configure(:global, token)
 
     use_cassette "comments_auth_implicit" do
-      comments = Elixtagram.comments(id, :global)
+      comments = Elixtagram.media_comments(id, :global)
       assert length(comments) > 0
     end
   end
@@ -626,7 +626,7 @@ defmodule ElixtagramTest do
     token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
 
     use_cassette "comments_auth_explicit" do
-      comments = Elixtagram.comments(id, token)
+      comments = Elixtagram.media_comments(id, token)
       assert length(comments) > 0
     end
   end
@@ -636,7 +636,7 @@ defmodule ElixtagramTest do
     comment = "Nice pic m8"
 
     use_cassette "comment", custom: true do
-      result = Elixtagram.comment(id, comment, "XXXXXXXXXXX")
+      result = Elixtagram.media_comment(id, comment, "XXXXXXXXXXX")
       assert result == :ok
     end
   end
@@ -647,7 +647,7 @@ defmodule ElixtagramTest do
     Elixtagram.configure(:global, "XXXXXXXXXXX")
 
     use_cassette "comment", custom: true do
-      result = Elixtagram.comment(id, comment, :global)
+      result = Elixtagram.media_comment(id, comment, :global)
       assert result == :ok
     end
   end
@@ -659,7 +659,7 @@ defmodule ElixtagramTest do
 
     use_cassette "comment_scope_exception" do
       assert_raise Elixtagram.Error, fn ->
-        Elixtagram.comment(id, comment, token)
+        Elixtagram.media_comment(id, comment, token)
       end
     end
   end
@@ -669,7 +669,7 @@ defmodule ElixtagramTest do
     comment_id = "XXXXXXXXXXX"
 
     use_cassette "comment_delete", custom: true do
-      result = Elixtagram.comment_delete(media_id, comment_id, "XXXXXXXXXX")
+      result = Elixtagram.media_comment_delete(media_id, comment_id, "XXXXXXXXXX")
       assert result == :ok
     end
   end
@@ -680,7 +680,7 @@ defmodule ElixtagramTest do
     Elixtagram.configure(:global, "XXXXXXXXXX")
 
     use_cassette "comment_delete", custom: true do
-      result = Elixtagram.comment_delete(media_id, comment_id, :global)
+      result = Elixtagram.media_comment_delete(media_id, comment_id, :global)
       assert result == :ok
     end
   end
@@ -692,7 +692,7 @@ defmodule ElixtagramTest do
 
     use_cassette "comment_delete_scope_exception" do
       assert_raise Elixtagram.Error, fn ->
-        Elixtagram.comment_delete(media_id, comment_id, token)
+        Elixtagram.media_comment_delete(media_id, comment_id, token)
       end
     end
   end

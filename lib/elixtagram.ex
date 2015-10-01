@@ -562,13 +562,13 @@ defmodule Elixtagram do
   [request_like_scope]: https://help.instagram.com/contact/185819881608116
 
   ## Example
-      iex(1)> Elixtagram.like_media("XXXXXXXX", :global)
+      iex(1)> Elixtagram.media_like("XXXXXXXX", :global)
       :ok
 
-      iex(1)> Elixtagram.like_media("XXXXXXXX", :global)
+      iex(1)> Elixtagram.media_like("XXXXXXXX", :global)
       ** (Elixtagram.Error) OAuthPermissionsException: This request requires scope=likes, but this access token is not authorized with this scope. The user must re-authorize your application with scope=likes to be granted write permissions.
   """
-  defdelegate like_media(media_id, token), to: Elixtagram.API.Likes, as: :like
+  defdelegate media_like(media_id, token), to: Elixtagram.API.Likes, as: :like
 
   @doc """
   **Note: To use this you must have access to the `likes` scope,
@@ -580,13 +580,13 @@ defmodule Elixtagram do
   [request_like_scope]: https://help.instagram.com/contact/185819881608116
 
   ## Example
-      iex(1)> Elixtagram.unlike_media("XXXXXXXX", :global)
+      iex(1)> Elixtagram.media_unlike("XXXXXXXX", :global)
       :ok
 
-      iex(1)> Elixtagram.unlike_media("XXXXXXXX", :global)
+      iex(1)> Elixtagram.media_unlike("XXXXXXXX", :global)
       ** (Elixtagram.Error) OAuthPermissionsException: This request requires scope=likes, but this access token is not authorized with this scope. The user must re-authorize your application with scope=likes to be granted write permissions.
   """
-  defdelegate unlike_media(media_id, token), to: Elixtagram.API.Likes, as: :unlike
+  defdelegate media_unlike(media_id, token), to: Elixtagram.API.Likes, as: :unlike
 
   # 1072892704941941781_35822824
 
@@ -594,7 +594,7 @@ defmodule Elixtagram do
   Takes a media id and returns a List of comments as `%Elixtagram.Model.Comment`
 
   ## Example
-      iex(1)> Elixtagram.comments("XXXXXXXXXXXXXXXXX")
+      iex(1)> Elixtagram.media_comments("XXXXXXXXXXXXXXXXX")
       [%Elixtagram.Model.Comment{created_time: "1442120355",
       from: %{full_name: "- D J  M Λ K K -", id: "904376079",
         profile_picture: "https://scontent.cdninstagram.com/hphotos-xpf1/t51.2885-19/s150x150/10549742_1640334582890085_1510069009_a.jpg",
@@ -619,14 +619,14 @@ defmodule Elixtagram do
         profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/s150x150/11910388_129390307408288_53320144_a.jpg",
         username: "rafael_nieves"}, id: "1075779805656130920", text: "😆"}]
   """
-  defdelegate comments(media_id), to: Elixtagram.API.Comments, as: :comments
+  defdelegate media_comments(media_id), to: Elixtagram.API.Comments, as: :comments
 
   @doc """
   Takes a media id and a token (or `:global` if it's been configured).
   Returns a List of comments as `%Elixtagram.Model.Comment`
 
   ## Example
-      iex(1)> Elixtagram.comments("XXXXXXXXXXXXXXXXX", :global)
+      iex(1)> Elixtagram.media_comments("XXXXXXXXXXXXXXXXX", :global)
       [%Elixtagram.Model.Comment{created_time: "1442120355",
       from: %{full_name: "- D J  M Λ K K -", id: "904376079",
         profile_picture: "https://scontent.cdninstagram.com/hphotos-xpf1/t51.2885-19/s150x150/10549742_1640334582890085_1510069009_a.jpg",
@@ -651,7 +651,7 @@ defmodule Elixtagram do
         profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/s150x150/11910388_129390307408288_53320144_a.jpg",
         username: "rafael_nieves"}, id: "1075779805656130920", text: "😆"}]
   """
-  defdelegate comments(media_id, token), to: Elixtagram.API.Comments, as: :comments
+  defdelegate media_comments(media_id, token), to: Elixtagram.API.Comments, as: :comments
 
   @doc """
   **Note: To use this you must have access to the `comments` scope,
@@ -663,14 +663,14 @@ defmodule Elixtagram do
   [request_scope]: https://help.instagram.com/contact/185819881608116
 
   ## Example
-      iex(1)> Elixtagram.comment("XXXXXXXX", "Nice pic m8", :global)
+      iex(1)> Elixtagram.media_comment("XXXXXXXX", "Nice pic m8", :global)
       :ok
 
-      iex(1)> Elixtagram.comment("XXXXXXXX", "Nice pic m8", :global)
+      iex(1)> Elixtagram.media_comment("XXXXXXXX", "Nice pic m8", :global)
       ** (Elixtagram.Error) OAuthPermissionsException: This request requires scope=comments, but this access token is not authorized with this scope. The user must re-authorize your application with scope=comments to be granted write permissions.
   """
-  defdelegate comment(media_id, comment_string, token), to: Elixtagram.API.Comments,
-                                                        as: :comment
+  defdelegate media_comment(media_id, comment_string, token), to: Elixtagram.API.Comments,
+                                                              as: :comment
 
   @doc """
   **Note: To use this you must have access to the `comments` scope,
@@ -682,12 +682,14 @@ defmodule Elixtagram do
   [request_scope]: https://help.instagram.com/contact/185819881608116
 
   ## Example
-      iex(1)> Elixtagram.comment_delete("XXXXXXXX", "XXXXXXXXXX", :global)
+      iex(1)> Elixtagram.media_comment_delete("XXXXXXXX", "XXXXXXXXXX", :global)
       :ok
 
-      iex(1)> Elixtagram.comment_delete("XXXXXXXX", "XXXXXXXXXX", :global)
+      iex(1)> Elixtagram.media_comment_delete("XXXXXXXX", "XXXXXXXXXX", :global)
       ** (Elixtagram.Error) OAuthPermissionsException: This request requires scope=comments, but this access token is not authorized with this scope. The user must re-authorize your application with scope=comments to be granted write permissions.
   """
-  defdelegate comment_delete(media_id, comment_id, token), to: Elixtagram.API.Comments,
-                                                           as: :delete_comment
+  defdelegate media_comment_delete(media_id, comment_id, token), to: Elixtagram.API.Comments,
+                                                                 as: :comment_delete
+
+  # defdelegate
 end

@@ -23,7 +23,7 @@ defmodule Elixtagram.API.Comments do
   @doc """
   Deletes a comment from a media item
   """
-  def delete_comment(media_id, comment_id, token \\ :global) do
+  def comment_delete(media_id, comment_id, token \\ :global) do
     delete("/media/#{media_id}/comments/#{comment_id}", token)
     :ok
   end

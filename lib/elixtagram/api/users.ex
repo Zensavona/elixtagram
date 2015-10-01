@@ -11,7 +11,7 @@ defmodule Elixtagram.API.Users do
   `:self` can be passed as a user id to return the user associated with the token.
   """
   def user(user_id, token \\ :global) do
-    request(:get, "/users/#{user_id}", token).data |> parse_user
+    get("/users/#{user_id}", token).data |> parse_user
   end
 
   @doc """
@@ -25,7 +25,7 @@ defmodule Elixtagram.API.Users do
     accepted = [:count, :q]
     request_params = parse_request_params(params, accepted)
 
-    results = request(:get, "/users/search", token, request_params).data |> Enum.map(&parse_user_search_result(&1))
+    results = get("/users/search", token, request_params).data |> Enum.map(&parse_user_search_result(&1))
 
     if Map.has_key?(params, :count), do: Enum.take(results, params.count), else: results
   end
@@ -36,7 +36,7 @@ defmodule Elixtagram.API.Users do
   def recent_media(user_id, params \\ %{}, token \\ :global) do
     accepted = [:count, :min_id, :max_id, :min_timestamp, :max_timestamp]
     request_params = parse_request_params(params, accepted)
-    request(:get, "/users/#{user_id}/media/recent", token, request_params).data |> Enum.map(&parse_media(&1))
+    get("/users/#{user_id}/media/recent", token, request_params).data |> Enum.map(&parse_media(&1))
   end
 
   @doc """
@@ -45,7 +45,7 @@ defmodule Elixtagram.API.Users do
   def feed(params \\ %{}, token \\ :global) do
     accepted = [:count, :min_id, :max_id]
     request_params = parse_request_params(params, accepted)
-    request(:get, "/users/self/feed", token, request_params).data |> Enum.map(&parse_media(&1))
+    get("/users/self/feed", token, request_params).data |> Enum.map(&parse_media(&1))
   end
 
   @doc """
@@ -54,6 +54,6 @@ defmodule Elixtagram.API.Users do
   def media_liked(params \\ %{}, token \\ :global) do
     accepted = [:count, :max_like_id]
     request_params = parse_request_params(params, accepted)
-    request(:get, "/users/self/media/liked", token, request_params).data |> Enum.map(&parse_media(&1))
+    get("/users/self/media/liked", token, request_params).data |> Enum.map(&parse_media(&1))
   end
 end

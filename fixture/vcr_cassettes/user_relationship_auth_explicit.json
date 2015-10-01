@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "url": "https://api.instagram.com/v1/users/798275610/relationship"
+    },
+    "response": {
+      "body": "{\"meta\":{\"code\":200},\"data\":{\"outgoing_status\":\"follows\",\"target_user_is_private\":false,\"incoming_status\":\"followed_by\"}}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4993",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Thu, 01 Oct 2015 17:06:33 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=d5aabeef924fb4669e86a93b90f1ebdf; expires=Thu, 29-Sep-2016 17:06:33 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "121"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

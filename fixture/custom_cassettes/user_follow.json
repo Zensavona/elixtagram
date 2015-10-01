@@ -2,11 +2,11 @@
   {
     "request": {
       "method": "post",
-      "body": "text=Nice+pic+m8",
-      "url": "https://api.instagram.com/v1/media/XXXXXXXXXXX/comments?access_token=XXXXXXXXXXX"
+      "body": "action=follow",
+      "url": "https://api.instagram.com/v1/users/XXXXXXXXXX/relationship?access_token=XXXXXXXXXX"
     },
     "response": {
-      "body": "{\"meta\":{\"code\":200},\"data\":null}",
+      "body": "{\"meta\":{\"code\":200},\"data\": {\"outgoing_status\":\"requested\"}}",
       "headers": {
         "X-Ratelimit-Remaining": "4997",
         "Content-Language": "en",

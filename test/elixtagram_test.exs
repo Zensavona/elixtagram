@@ -696,4 +696,172 @@ defmodule ElixtagramTest do
       end
     end
   end
+
+  test "get users the user follows (unauthenticated)" do
+    user_id = "35822824"
+    use_cassette "user_following" do
+      follows = Elixtagram.user_follows(user_id)
+      assert length(follows) > 0
+    end
+  end
+
+  test "get users the user follows (implicitly authenticated)" do
+    user_id = "35822824"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_following_auth_implicit" do
+      follows = Elixtagram.user_follows(user_id, :global)
+      assert length(follows) > 0
+    end
+  end
+
+  test "get users the user follows (explicitly authenticated)" do
+    user_id = "35822824"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "user_following_auth_explicit" do
+      follows = Elixtagram.user_follows(user_id, token)
+      assert length(follows) > 0
+    end
+  end
+
+  test "get user's followers (unauthenticated)" do
+    user_id = "35822824"
+    use_cassette "user_followers" do
+      followers = Elixtagram.user_followed_by(user_id)
+      assert length(followers) > 0
+    end
+  end
+
+  test "get user's followers (implicitly authenticated)" do
+    user_id = "35822824"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_followers_auth_implicit" do
+      followers = Elixtagram.user_followed_by(user_id, :global)
+      assert length(followers) > 0
+    end
+  end
+
+  test "get user's followers (explicitly authenticated)" do
+    user_id = "35822824"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "user_followers_auth_explicit" do
+      followers = Elixtagram.user_followed_by(user_id, token)
+      assert length(followers) > 0
+    end
+  end
+
+  test "get user's requested followers (implicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_requested_by_auth_implicit" do
+      requested_by = Elixtagram.user_requested_by(:global)
+      assert requested_by == []
+    end
+  end
+
+  test "get user's requested followers (explicitly authenticated)" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "user_requested_by_auth_explicit" do
+      requested_by = Elixtagram.user_requested_by(token)
+      assert requested_by == []
+    end
+  end
+
+  test "get user's relationship with another user (implicitly authenticated)" do
+    user_id = "798275610"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_relationship_auth_implicit" do
+      relationship = Elixtagram.user_relationship(user_id, :global)
+
+      assert relationship.incoming_status == "followed_by"
+      assert relationship.outgoing_status == "follows"
+      assert relationship.target_user_is_private == false
+    end
+  end
+
+  test "get user's relationship with another user (explicitly authenticated)" do
+    user_id = "798275610"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    Elixtagram.configure(:global, token)
+
+    use_cassette "user_relationship_auth_explicit" do
+      relationship = Elixtagram.user_relationship(user_id, token)
+
+      assert relationship.incoming_status == "followed_by"
+      assert relationship.outgoing_status == "follows"
+      assert relationship.target_user_is_private == false
+    end
+  end
+
+  # These are just contrived, as I don't have an authorised Instagram account
+  # to capture real responses from.
+
+  test "follow a user" do
+    token = "XXXXXXXXXX"
+    user_id = "XXXXXXXXXX"
+
+    use_cassette "user_follow", custom: true do
+      response = Elixtagram.user_relationship(user_id, :follow, token)
+      assert response == :requested
+    end
+  end
+
+  test "unfollow a user" do
+    token = "XXXXXXXXXX"
+    user_id = "XXXXXXXXXX"
+
+    use_cassette "user_unfollow", custom: true do
+      response = Elixtagram.user_relationship(user_id, :unfollow, token)
+      assert response == :ok
+    end
+  end
+
+  test "block a user" do
+    token = "XXXXXXXXXX"
+    user_id = "XXXXXXXXXX"
+
+    use_cassette "user_block", custom: true do
+      response = Elixtagram.user_relationship(user_id, :block, token)
+      assert response == :ok
+    end
+  end
+
+  test "unblock a user" do
+    token = "XXXXXXXXXX"
+    user_id = "XXXXXXXXXX"
+
+    use_cassette "user_unblock", custom: true do
+      response = Elixtagram.user_relationship(user_id, :unblock, token)
+      assert response == :ok
+    end
+  end
+
+  test "approve a follower" do
+    token = "XXXXXXXXXX"
+    user_id = "XXXXXXXXXX"
+
+    use_cassette "user_approve", custom: true do
+      response = Elixtagram.user_relationship(user_id, :approve, token)
+      assert response == :follows
+    end
+  end
+
+  test "ignore a follow request" do
+    token = "XXXXXXXXXX"
+    user_id = "XXXXXXXXXX"
+
+    use_cassette "user_ignore", custom: true do
+      response = Elixtagram.user_relationship(user_id, :ignore, token)
+      assert response == :ok
+    end
+  end
 end

@@ -1,25 +1,27 @@
 [
   {
     "request": {
-      "method": "post",
-      "body": "text=Nice+pic+m8",
-      "url": "https://api.instagram.com/v1/media/XXXXXXXXXXX/comments?access_token=XXXXXXXXXXX"
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "url": "https://api.instagram.com/v1/users/self/requested-by"
     },
     "response": {
-      "body": "{\"meta\":{\"code\":200},\"data\":null}",
+      "body": "{\"meta\":{\"code\":200},\"data\":[]}",
       "headers": {
-        "X-Ratelimit-Remaining": "4997",
+        "X-Ratelimit-Remaining": "4996",
         "Content-Language": "en",
         "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
         "Vary": "Cookie, Accept-Language",
         "X-Ratelimit-Limit": "5000",
         "Pragma": "no-cache",
         "Cache-Control": "private, no-cache, no-store, must-revalidate",
-        "Date": "Tue, 29 Sep 2015 15:44:22 GMT",
+        "Date": "Thu, 01 Oct 2015 17:06:28 GMT",
         "Content-Type": "application/json; charset=utf-8",
-        "Set-Cookie": "csrftoken=63e86758f6acf3d1c013d8b5319f9798; expires=Tue, 27-Sep-2016 15:44:22 GMT; Max-Age=31449600; Path=/",
+        "Set-Cookie": "csrftoken=a073aefc4f8b5e9f00aed87e3f7ec99c; expires=Thu, 29-Sep-2016 17:06:28 GMT; Max-Age=31449600; Path=/",
         "Connection": "keep-alive",
-        "Content-Length": "73"
+        "Content-Length": "31"
       },
       "status_code": 200,
       "type": "ok"

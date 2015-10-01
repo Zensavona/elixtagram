@@ -28,3 +28,7 @@ end
 defmodule Elixtagram.Model.UserSearchResult do
   defstruct id: nil, username: nil, full_name: nil, profile_picture: nil
 end
+
+defmodule Elixtagram.Model.Comment do
+  defstruct id: nil, created_time: nil, text: nil, from: nil
+end

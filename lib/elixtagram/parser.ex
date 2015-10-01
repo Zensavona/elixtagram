@@ -20,6 +20,10 @@ defmodule Elixtagram.Parser do
     struct(Elixtagram.Model.UserSearchResult, object)
   end
 
+  def parse_comment(object) do
+    struct(Elixtagram.Model.Comment, object)
+  end
+
   @doc """
   Parse request parameters for the API.
   """

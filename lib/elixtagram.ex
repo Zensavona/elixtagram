@@ -587,4 +587,107 @@ defmodule Elixtagram do
       ** (Elixtagram.Error) OAuthPermissionsException: This request requires scope=likes, but this access token is not authorized with this scope. The user must re-authorize your application with scope=likes to be granted write permissions.
   """
   defdelegate unlike_media(media_id, token), to: Elixtagram.API.Likes, as: :unlike
+
+  # 1072892704941941781_35822824
+
+  @doc """
+  Takes a media id and returns a List of comments as `%Elixtagram.Model.Comment`
+
+  ## Example
+      iex(1)> Elixtagram.comments("XXXXXXXXXXXXXXXXX")
+      [%Elixtagram.Model.Comment{created_time: "1442120355",
+      from: %{full_name: "- D J  M Λ K K -", id: "904376079",
+        profile_picture: "https://scontent.cdninstagram.com/hphotos-xpf1/t51.2885-19/s150x150/10549742_1640334582890085_1510069009_a.jpg",
+        username: "anthonymarcarella"}, id: "1072905761030153596",
+      text: "Wow!  Like  your  image!"},
+     %Elixtagram.Model.Comment{created_time: "1442133337",
+      from: %{full_name: "Richard Stow", id: "20859481",
+        profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/11899636_1614219182185630_61225165_a.jpg",
+        username: "richardstow"}, id: "1073014667609908273", text: "📷"},
+     %Elixtagram.Model.Comment{created_time: "1442164089",
+      from: %{full_name: "", id: "2032306568",
+        profile_picture: "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/s150x150/11356724_884715214954714_781335523_a.jpg",
+        username: "chloeg_creation_de_gateau"}, id: "1073272627716170835",
+      text: "Follow me please ☺️"},
+     %Elixtagram.Model.Comment{created_time: "1442404459",
+      from: %{full_name: "Carolyn", id: "230289717",
+        profile_picture: "https://igcdn-photos-b-a.akamaihd.net/hphotos-ak-xpa1/t51.2885-19/10691678_628145513973889_94786555_a.jpg",
+        username: "ilivegreen"}, id: "1075289004710831627",
+      text: "@stephanie_hair this reminded me of Forrest 😘"},
+     %Elixtagram.Model.Comment{created_time: "1442462968",
+      from: %{full_name: "Rafael A. Nieves 🌉🌌", id: "479491821",
+        profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/s150x150/11910388_129390307408288_53320144_a.jpg",
+        username: "rafael_nieves"}, id: "1075779805656130920", text: "😆"}]
+  """
+  defdelegate comments(media_id), to: Elixtagram.API.Comments, as: :comments
+
+  @doc """
+  Takes a media id and a token (or `:global` if it's been configured).
+  Returns a List of comments as `%Elixtagram.Model.Comment`
+
+  ## Example
+      iex(1)> Elixtagram.comments("XXXXXXXXXXXXXXXXX", :global)
+      [%Elixtagram.Model.Comment{created_time: "1442120355",
+      from: %{full_name: "- D J  M Λ K K -", id: "904376079",
+        profile_picture: "https://scontent.cdninstagram.com/hphotos-xpf1/t51.2885-19/s150x150/10549742_1640334582890085_1510069009_a.jpg",
+        username: "anthonymarcarella"}, id: "1072905761030153596",
+      text: "Wow!  Like  your  image!"},
+     %Elixtagram.Model.Comment{created_time: "1442133337",
+      from: %{full_name: "Richard Stow", id: "20859481",
+        profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/11899636_1614219182185630_61225165_a.jpg",
+        username: "richardstow"}, id: "1073014667609908273", text: "📷"},
+     %Elixtagram.Model.Comment{created_time: "1442164089",
+      from: %{full_name: "", id: "2032306568",
+        profile_picture: "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/s150x150/11356724_884715214954714_781335523_a.jpg",
+        username: "chloeg_creation_de_gateau"}, id: "1073272627716170835",
+      text: "Follow me please ☺️"},
+     %Elixtagram.Model.Comment{created_time: "1442404459",
+      from: %{full_name: "Carolyn", id: "230289717",
+        profile_picture: "https://igcdn-photos-b-a.akamaihd.net/hphotos-ak-xpa1/t51.2885-19/10691678_628145513973889_94786555_a.jpg",
+        username: "ilivegreen"}, id: "1075289004710831627",
+      text: "@stephanie_hair this reminded me of Forrest 😘"},
+     %Elixtagram.Model.Comment{created_time: "1442462968",
+      from: %{full_name: "Rafael A. Nieves 🌉🌌", id: "479491821",
+        profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/s150x150/11910388_129390307408288_53320144_a.jpg",
+        username: "rafael_nieves"}, id: "1075779805656130920", text: "😆"}]
+  """
+  defdelegate comments(media_id, token), to: Elixtagram.API.Comments, as: :comments
+
+  @doc """
+  **Note: To use this you must have access to the `comments` scope,
+  which is not by accessable without special permission [(more info)][request_scope].**
+
+  Takes a media id, a comment string and an access token (or `:global`, if configured).
+  Returns :ok if everything went as expected, throws an error if you don't have the right scope
+
+  [request_scope]: https://help.instagram.com/contact/185819881608116
+
+  ## Example
+      iex(1)> Elixtagram.comment("XXXXXXXX", "Nice pic m8", :global)
+      :ok
+
+      iex(1)> Elixtagram.comment("XXXXXXXX", "Nice pic m8", :global)
+      ** (Elixtagram.Error) OAuthPermissionsException: This request requires scope=comments, but this access token is not authorized with this scope. The user must re-authorize your application with scope=comments to be granted write permissions.
+  """
+  defdelegate comment(media_id, comment_string, token), to: Elixtagram.API.Comments,
+                                                        as: :comment
+
+  @doc """
+  **Note: To use this you must have access to the `comments` scope,
+  which is not by accessable without special permission [(more info)][request_scope].**
+
+  Takes a media id, comment id and an access token (or `:global`, if configured).
+  Returns :ok if everything went as expected, throws an error if you don't have the right scope
+
+  [request_scope]: https://help.instagram.com/contact/185819881608116
+
+  ## Example
+      iex(1)> Elixtagram.comment_delete("XXXXXXXX", "XXXXXXXXXX", :global)
+      :ok
+
+      iex(1)> Elixtagram.comment_delete("XXXXXXXX", "XXXXXXXXXX", :global)
+      ** (Elixtagram.Error) OAuthPermissionsException: This request requires scope=comments, but this access token is not authorized with this scope. The user must re-authorize your application with scope=comments to be granted write permissions.
+  """
+  defdelegate comment_delete(media_id, comment_id, token), to: Elixtagram.API.Comments,
+                                                           as: :delete_comment
 end

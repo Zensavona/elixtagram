@@ -9,9 +9,9 @@ defmodule Elixtagram.Config do
   end
   def configure do
     start_link(%Elixtagram.Model.ClientConfig{
-      client_id: System.get_env("INSTAGRAM_CLIENT_ID"),
-      client_secret: System.get_env("INSTAGRAM_CLIENT_SECRET"),
-      redirect_uri: System.get_env("INSTAGRAM_REDIRECT_URI")
+      client_id: Application.get_env(:elixtagram, :instagram_client_id) || System.get_env("INSTAGRAM_CLIENT_ID"),
+      client_secret: Application.get_env(:elixtagram, :instagram_client_secret) || System.get_env("INSTAGRAM_CLIENT_SECRET"),
+      redirect_uri: Application.get_env(:elixtagram, :instagram_redirect_uri) || System.get_env("INSTAGRAM_REDIRECT_URI")
       })
     {:ok, []}
   end

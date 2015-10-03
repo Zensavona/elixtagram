@@ -18,16 +18,6 @@ defmodule ConfigTest do
     assert Elixtagram.Config.get == config
   end
 
-  test "can get configuration from application variables" do
-    config = %Elixtagram.Model.ClientConfig{client_id: "XXX", client_secret: "XXXX", redirect_uri: "http://localhost:4000/test_application"}
-    Application.put_env(:elixtagram, :instagram_client_id, config.client_id)
-    Application.put_env(:elixtagram, :instagram_client_secret, config.client_secret)
-    Application.put_env(:elixtagram, :instagram_redirect_uri, config.redirect_uri)
-    Elixtagram.configure
-
-    assert Elixtagram.Config.get == config
-  end
-
   test "returns a basic scoped authorisation url" do
     Elixtagram.configure("XXX", "XXX", "https://localhost:4000/test")
     url = "https://api.instagram.com/oauth/authorize/?client_id=XXX&redirect_uri=https%3A%2F%2Flocalhost%3A4000%2Ftest&response_type=code"

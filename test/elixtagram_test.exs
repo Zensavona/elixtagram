@@ -10,7 +10,12 @@ defmodule ElixtagramTest do
     ExVCR.Config.filter_sensitive_data("access_token\":\".+?\"", "access_token\":\"<REMOVED>\"")
     ExVCR.Config.filter_sensitive_data("code\":\".+?\"", "access_token\":\"<REMOVED>\"")
 
-    Dotenv.reload!
+    System.put_env "INSTAGRAM_CLIENT_ID", "XXXXXXXXXXXXXXXXXXXX"
+    System.put_env "INSTAGRAM_CLIENT_SECRET", "XXXXXXXXXXXXXXXXXXXX"
+    System.put_env "INSTAGRAM_ACCESS_TOKEN", "XXXXXXXXXXXXXXXXXXXX"
+    System.put_env "INSTAGRAM_ACCESS_TOKEN", "XXXXXXXXXXXXXXXXXXXX"
+    System.put_env "INSTAGRAM_REDIRECT_URI", "https://github.com/zensavona/elixtagram"
+
     Elixtagram.configure
 
     :ok

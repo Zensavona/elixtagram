@@ -108,6 +108,51 @@ iex(2)> Elixtagram.user_feed(%{count: 2}, :global)
 
 All of the available methods and the ways to call them are [in the docs](https://hexdocs.pm/elixtagram/Elixtagram.html)
 
+## Running the tests
+
+TL;DR: `mix text`
+
+Longer answer:
+```
+$ mix deps.get
+Running dependency resolution
+All dependencies up to date
+
+$ mix test
+...........................................................................................
+
+Finished in 17.6 seconds (2.9s on load, 14.7s on tests)
+91 tests, 0 failures
+
+Randomized with seed 846369
+
+$ mix coveralls
+...........................................................................................
+
+Finished in 13.1 seconds (1.9s on load, 11.2s on tests)
+91 tests, 0 failures
+
+Randomized with seed 972312
+----------------
+COV    FILE                                        LINES RELEVANT   MISSED
+100.0% lib/elixtagram.ex                             806       49        0
+100.0% lib/elixtagram/api/base.ex                     84       24        0
+100.0% lib/elixtagram/api/comments.ex                 30        3        0
+100.0% lib/elixtagram/api/follows.ex                  37        5        0
+100.0% lib/elixtagram/api/likes.ex                    30        3        0
+100.0% lib/elixtagram/api/locations.ex                56       12        0
+100.0% lib/elixtagram/api/media.ex                    37        6        0
+100.0% lib/elixtagram/api/tags.ex                     33        5        0
+100.0% lib/elixtagram/api/users.ex                    59       14        0
+100.0% lib/elixtagram/config.ex                       42       10        0
+  0.0% lib/elixtagram/exception.ex                     3        0        0
+  0.0% lib/elixtagram/model.ex                        38        0        0
+100.0% lib/elixtagram/oauth_strategy.ex               50       13        0
+100.0% lib/elixtagram/parser.ex                       48       10        0
+[TOTAL] 100.0%
+----------------
+```
+
 ## Status
 
 It's mostly complete, but these things are missing:

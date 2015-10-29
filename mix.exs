@@ -4,7 +4,7 @@ defmodule Elixtagram.Mixfile do
   def project do
     [
       app: :elixtagram,
-       version: "0.1.1",
+       version: "0.1.2",
        elixir: "~> 1.0",
        build_embedded: Mix.env == :prod,
        start_permanent: Mix.env == :prod,
@@ -20,8 +20,6 @@ defmodule Elixtagram.Mixfile do
     [applications: app_list(Mix.env)]
   end
 
-  defp app_list(:dev), do: [:dotenv | app_list]
-  defp app_list(:test), do: [:dotenv | app_list]
   defp app_list(_), do: app_list
   defp app_list, do: [:logger, :httpoison, :oauth2]
 
@@ -33,8 +31,7 @@ defmodule Elixtagram.Mixfile do
       {:exvcr, "~> 0.3", only: [:dev, :test]},
       {:ex_doc, "~> 0.10.0", only: [:dev, :docs]},
       {:excoveralls, "~> 0.3", only: [:dev, :test]},
-      {:inch_ex, "~> 0.4.0", only: [:dev, :docs]},
-      {:dotenv, "~> 1.0.0", only: [:dev, :test]}
+      {:inch_ex, "~> 0.4.0", only: [:dev, :docs]}
     ]
   end
 

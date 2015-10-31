@@ -8,8 +8,8 @@ defmodule Elixtagram.API.Follows do
   @doc """
   Fetch the users a user follows
   """
-  def follows(user_id, token \\ :global) do
-    get("/users/#{user_id}/follows", token).data |> Enum.map(&parse_user_search_result/1)
+  def follows(user_id, count, token \\ :global) do
+    get("/users/#{user_id}/follows", token, [["count", count]]).data |> Enum.map(&parse_user_search_result/1)
   end
 
   @doc """

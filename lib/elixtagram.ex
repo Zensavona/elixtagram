@@ -692,31 +692,31 @@ defmodule Elixtagram do
                                                                  as: :comment_delete
 
   @doc """
-  Takes a user id, returns a List of users they follow as `%Elixtagram.Model.UserSearchResult`
+  Takes a user id, count and returns a List of users they follow as `%Elixtagram.Model.UserSearchResult`
 
   ## Example
-      iex(1)> Elixtagram.user_follows("XXXXXXXXXX")
+      iex(1)> Elixtagram.user_follows("XXXXXXXXXX", 10)
       [%Elixtagram.Model.UserSearchResult{full_name: "Dariel 🙈", id: "1782884605",
       profile_picture: "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/s150x150/11296793_1507078476281099_1357579188_a.jpg", username: "dari600"},
       %Elixtagram.Model.UserSearchResult{full_name: "Sal / Peri", id: "284767950",
       profile_picture: "https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/s150x150/11349346_422441984620139_1778366224_a.jpg",
       username: "peri.fu"}, ...]
   """
-  defdelegate user_follows(user_id), to: Elixtagram.API.Follows, as: :follows
+  defdelegate user_follows(user_id, count), to: Elixtagram.API.Follows, as: :follows
 
   @doc """
-  Takes a user id and an access token (or `:global`, if configured).
+  Takes a user id, count and an access token (or `:global`, if configured).
   Returns a List of users they follow as `%Elixtagram.Model.UserSearchResult`
 
   ## Example
-      iex(1)> Elixtagram.user_follows("XXXXXXXXXX", :global)
+      iex(1)> Elixtagram.user_follows("XXXXXXXXXX", 10, :global)
       [%Elixtagram.Model.UserSearchResult{full_name: "Dariel 🙈", id: "1782884605",
       profile_picture: "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/s150x150/11296793_1507078476281099_1357579188_a.jpg", username: "dari600"},
       %Elixtagram.Model.UserSearchResult{full_name: "Sal / Peri", id: "284767950",
       profile_picture: "https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/s150x150/11349346_422441984620139_1778366224_a.jpg",
       username: "peri.fu"}, ...]
   """
-  defdelegate user_follows(user_id, token), to: Elixtagram.API.Follows, as: :follows
+  defdelegate user_follows(user_id, count, token), to: Elixtagram.API.Follows, as: :follows
 
   @doc """
   Takes a user id, returns a List of the user's followers as `%Elixtagram.Model.UserSearchResult`

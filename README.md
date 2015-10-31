@@ -160,3 +160,10 @@ It's mostly complete, but these things are missing:
 * Pagination of results for certain data types
 * Real time subscriptions
 * Secure requests
+
+
+## Changelog
+
+### 0.2.0
+
+- Change the api of `Elixtagram.user_follows/1` & `Elixtagram.user_follows/2` (now respectively `Elixtagram.user_follows/2` & `Elixtagram.user_follows/3`) to accept a `count` argument.

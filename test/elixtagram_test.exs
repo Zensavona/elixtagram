@@ -13,7 +13,6 @@ defmodule ElixtagramTest do
     System.put_env "INSTAGRAM_CLIENT_ID", "XXXXXXXXXXXXXXXXXXXX"
     System.put_env "INSTAGRAM_CLIENT_SECRET", "XXXXXXXXXXXXXXXXXXXX"
     System.put_env "INSTAGRAM_ACCESS_TOKEN", "XXXXXXXXXXXXXXXXXXXX"
-    System.put_env "INSTAGRAM_ACCESS_TOKEN", "XXXXXXXXXXXXXXXXXXXX"
     System.put_env "INSTAGRAM_REDIRECT_URI", "https://github.com/zensavona/elixtagram"
 
     Elixtagram.configure
@@ -705,8 +704,8 @@ defmodule ElixtagramTest do
   test "get users the user follows (unauthenticated)" do
     user_id = "35822824"
     use_cassette "user_following" do
-      follows = Elixtagram.user_follows(user_id)
-      assert length(follows) > 0
+      follows = Elixtagram.user_follows(user_id, 10)
+      assert length(follows) == 10
     end
   end
 
@@ -716,8 +715,8 @@ defmodule ElixtagramTest do
     Elixtagram.configure(:global, token)
 
     use_cassette "user_following_auth_implicit" do
-      follows = Elixtagram.user_follows(user_id, :global)
-      assert length(follows) > 0
+      follows = Elixtagram.user_follows(user_id, 50, :global)
+      assert length(follows) == 50
     end
   end
 
@@ -726,7 +725,7 @@ defmodule ElixtagramTest do
     token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
 
     use_cassette "user_following_auth_explicit" do
-      follows = Elixtagram.user_follows(user_id, token)
+      follows = Elixtagram.user_follows(user_id, 6, token)
       assert length(follows) > 0
     end
   end

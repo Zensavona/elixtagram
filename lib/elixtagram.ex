@@ -65,6 +65,20 @@ defmodule Elixtagram do
   defdelegate authorize_url!(scope), to: Elixtagram.OAuthStrategy, as: :authorize_url!
 
   @doc """
+  Returns the url to redirect a user to when authorising your app to use their
+  account. Takes a list of permissions scopes as `atom` to request from Instagram, as well as
+  a 'state', this is an optional query param that will be passed back to your application's
+  callback url.
+
+  Available scopes: `:comments`, `:relationships` and `:likes`
+
+  ## Example
+      iex(1)> Elixtagram.authorize_url!([:comments, :relationships], "somevalue")
+      "https://api.instagram.com/oauth/authorize/?client_id=XXX&redirect_uri=localhost%3A4000&response_type=code&scope=comments+relationships&state=somevalue"
+  """
+  defdelegate authorize_url!(scope, state), to: Elixtagram.OAuthStrategy, as: :authorize_url!
+
+  @doc """
   Takes a `keyword list` containing the code returned from Instagram in the redirect after
   login and returns a `%OAuth2.AccessToken` with an access token to store with the user or
   use for making authenticated requests.

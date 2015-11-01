@@ -17,6 +17,16 @@ defmodule Elixtagram.OAuthStrategy do
     ])
   end
 
+  def authorize_url!(scope, state) do
+    scopes = scope
+              |> Enum.map(fn s -> to_string(s) end)
+              |> Enum.filter(fn s -> Enum.member?(@scopes, s) end)
+              |> Enum.join(" ")
+    new()
+    |> put_param(:scope, scopes)
+    |> put_param(:state, state)
+    |> OAuth2.Client.authorize_url!([])
+  end
   def authorize_url!(scope) do
     scopes = scope
               |> Enum.map(fn s -> to_string(s) end)

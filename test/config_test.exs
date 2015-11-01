@@ -31,4 +31,11 @@ defmodule ConfigTest do
 
     assert Elixtagram.authorize_url!([:relationships, :comments]) == url
   end
+
+  test "returns a specifically scoped authorisation url with state query param" do
+    Elixtagram.configure("XXX", "XXX", "https://localhost:4000/test")
+    url = "https://api.instagram.com/oauth/authorize/?client_id=XXX&redirect_uri=https%3A%2F%2Flocalhost%3A4000%2Ftest&response_type=code&scope=relationships+comments&state=value"
+
+    assert Elixtagram.authorize_url!([:relationships, :comments], "value") == url
+  end
 end

@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.2.0"}]
+  [{:elixtagram, "~> 0.2.1"}]
 end
 
 ...
@@ -163,6 +163,10 @@ It's mostly complete, but these things are missing:
 
 
 ## Changelog
+
+### 0.2.1
+
+- Add `Elixtagram.authorize_url!/3`, which takes a `state` argument to pass back to the callback url. This is useful for things like CSRF protection ([read more here](https://instagram.com/developer/authentication/)). This change doesn't break or change the existing API.
 
 ### 0.2.0
 

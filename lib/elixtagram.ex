@@ -704,7 +704,6 @@ defmodule Elixtagram do
   """
   defdelegate media_comment_delete(media_id, comment_id, token), to: Elixtagram.API.Comments,
                                                                  as: :comment_delete
-
   @doc """
   Takes a user id, count and returns a List of users they follow as `%Elixtagram.Model.UserSearchResult`
 
@@ -715,6 +714,39 @@ defmodule Elixtagram do
       %Elixtagram.Model.UserSearchResult{full_name: "Sal / Peri", id: "284767950",
       profile_picture: "https://igcdn-photos-d-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-19/s150x150/11349346_422441984620139_1778366224_a.jpg",
       username: "peri.fu"}, ...]
+
+  For paginated results, pass a map with a `count` and optional `cursor`.
+  This will return a map containing `results` and `next_cursor`.
+
+  ## Example
+      iex(1)> Elixtagram.user_follows("XXXXXXXXXX", %{count: 3})
+      %{next_cursor: "XXXXXXXXXX",
+      results: [%Elixtagram.Model.UserSearchResult{full_name: "meganmayble",
+      id: "176431650",
+      profile_picture: "https://igcdn-photos-e-a.akamaihd.net/hphotos-ak-xpa1/t51.2885-19/10522189_1425538584361516_1313020536_a.jpg",
+      username: "meganmayble"},
+     %Elixtagram.Model.UserSearchResult{full_name: "Dallas J Stone",
+      id: "14325567",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/s150x150/12141839_453007948221534_1037878214_a.jpg",
+      username: "dallasjstone"},
+     %Elixtagram.Model.UserSearchResult{full_name: "Emma Ferguson",
+      id: "299647278",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/11324948_826531150776394_932627239_a.jpg",
+      username: "emferge"}]}
+
+      iex(2)> Elixtagram.user_follows("XXXXXXXXXX", %{count: 3, cursor: "XXXXXXXXXX"})
+      %{next_cursor: "XXXXXXXXXX",
+        results: [%Elixtagram.Model.UserSearchResult{full_name: "violet arthi",
+      id: "1154780751",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-19/s150x150/11849016_1481802675477332_336263373_a.jpg",
+      username: "prettyinpoc"},
+     %Elixtagram.Model.UserSearchResult{full_name: "gogogo", id: "1598470944",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xfa1/t51.2885-19/10785126_1005518456130807_438807926_a.jpg",
+      username: "ugo.karle"},
+     %Elixtagram.Model.UserSearchResult{full_name: "Talia Smith",
+      id: "1362121463",
+      profile_picture: "https://scontent.cdninstagram.com/hphotos-xpa1/t51.2885-19/10948784_579906995477967_761832201_a.jpg",
+      username: "_teabird_"}]}
   """
   defdelegate user_follows(user_id, count), to: Elixtagram.API.Follows, as: :follows
 

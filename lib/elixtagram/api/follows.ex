@@ -4,11 +4,29 @@ defmodule Elixtagram.API.Follows do
   """
   import Elixtagram.API.Base
   import Elixtagram.Parser
+  @acceptable ~w(count cursor)
 
   @doc """
-  Fetch the users a user follows
+  Fetches user's follows
   """
-  def follows(user_id, count, token \\ :global) do
+  def follows(user_id, query, token \\ :global)
+  @doc """
+  Fetch the users a user follows, with pagination.
+  """
+  def follows(user_id, %{count: count} = data, token) do
+    params = Enum.filter_map(data,
+                             fn({k, v}) -> Enum.member?(@acceptable, to_string(k)) end,
+                             fn({k, v}) -> [to_string(k), v] end)
+    result = get("/users/#{user_id}/follows", token, params)
+    %{
+      results: Enum.map(result.data, &parse_user_search_result/1),
+      next_cursor: result.pagination.next_cursor
+    }
+  end
+  @doc """
+  Fetch the users a user follows, without pagination.
+  """
+  def follows(user_id, count, token) do
     get("/users/#{user_id}/follows", token, [["count", count]]).data |> Enum.map(&parse_user_search_result/1)
   end
 

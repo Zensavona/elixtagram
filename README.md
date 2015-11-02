@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.2.1"}]
+  [{:elixtagram, "~> 0.2.3"}]
 end
 
 ...
@@ -163,6 +163,9 @@ It's mostly complete, but these things are missing:
 
 
 ## Changelog
+
+### 0.2.3
+- Minor pagination bugfix - was throwing a `KeyError` when requesting a paginated `user_follows` and on the last page of results.
 
 ### 0.2.2
 - Add pagination support for `user_follows`, this doesn't break the existing `user_follows/2` and `user_follows/3` API.

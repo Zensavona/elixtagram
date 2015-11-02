@@ -1,0 +1,30 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "url": "https://api.instagram.com/v1/users/35822824/follows"
+    },
+    "response": {
+      "body": "{\"pagination\":{\"next_url\":\"https:\\/\\/api.instagram.com\\/v1\\/users\\/35822824\\/follows?count=10\\u0026cursor=AQCcs9G6It7d8ijS2z_rI5jNzb1AasPXSy9ZdIQ35zDDorpSRZy3jn84kCykFfXyQWxcc2P-ReVXR8t_fgJUoK6EAuSi6v3xK2vQVFAFS9C54RA5M37dGNmiaFP8iMxbSAfz7iP78L9D_6EZCTkncf8GGPDR3wK8rTsCPdlX_X6mjCdchHM640WAclkg2li8tTu98xrULgjmKJq-SX7DFre4\\u0026client_id=3c869588d8ad42a3a8c78cd61613c006\",\"next_cursor\":\"AQCcs9G6It7d8ijS2z_rI5jNzb1AasPXSy9ZdIQ35zDDorpSRZy3jn84kCykFfXyQWxcc2P-ReVXR8t_fgJUoK6EAuSi6v3xK2vQVFAFS9C54RA5M37dGNmiaFP8iMxbSAfz7iP78L9D_6EZCTkncf8GGPDR3wK8rTsCPdlX_X6mjCdchHM640WAclkg2li8tTu98xrULgjmKJq-SX7DFre4\"},\"meta\":{\"code\":200},\"data\":[{\"username\":\"meganmayble\",\"profile_picture\":\"https:\\/\\/igcdn-photos-e-a.akamaihd.net\\/hphotos-ak-xpa1\\/t51.2885-19\\/10522189_1425538584361516_1313020536_a.jpg\",\"id\":\"176431650\",\"full_name\":\"meganmayble\"},{\"username\":\"dallasjstone\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xaf1\\/t51.2885-19\\/s150x150\\/12141839_453007948221534_1037878214_a.jpg\",\"id\":\"14325567\",\"full_name\":\"Dallas J Stone\"},{\"username\":\"emferge\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xfa1\\/t51.2885-19\\/11324948_826531150776394_932627239_a.jpg\",\"id\":\"299647278\",\"full_name\":\"Emma Ferguson\"},{\"username\":\"prettyinpoc\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xaf1\\/t51.2885-19\\/s150x150\\/11849016_1481802675477332_336263373_a.jpg\",\"id\":\"1154780751\",\"full_name\":\"violet arthi\"},{\"username\":\"ugo.karle\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xfa1\\/t51.2885-19\\/10785126_1005518456130807_438807926_a.jpg\",\"id\":\"1598470944\",\"full_name\":\"gogogo\"},{\"username\":\"_teabird_\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xpa1\\/t51.2885-19\\/10948784_579906995477967_761832201_a.jpg\",\"id\":\"1362121463\",\"full_name\":\"Talia Smith\"},{\"username\":\"get_masculine\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xpa1\\/t51.2885-19\\/s150x150\\/10848075_370837639775371_2017718736_a.jpg\",\"id\":\"2045838015\",\"full_name\":\"Get Masculine\"},{\"username\":\"jessimwa\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xtf1\\/t51.2885-19\\/10890670_1406035813023554_355385252_a.jpg\",\"id\":\"278352461\",\"full_name\":\"Jessica McAuley\"},{\"username\":\"swisschocmad\",\"profile_picture\":\"https:\\/\\/scontent.cdninstagram.com\\/hphotos-xfa1\\/t51.2885-19\\/11821911_861009527320674_769338429_a.jpg\",\"id\":\"258979321\",\"full_name\":\"\"},{\"username\":\"lqd_hrmny\",\"profile_picture\":\"https:\\/\\/igcdn-photos-c-a.akamaihd.net\\/hphotos-ak-xfa1\\/t51.2885-19\\/11084894_893265147397018_746274538_a.jpg\",\"id\":\"304884313\",\"full_name\":\"Janis\"}]}",
+      "headers": {
+        "X-Ratelimit-Remaining": "4999",
+        "Content-Language": "en",
+        "Expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+        "Vary": "Cookie, Accept-Language, Accept-Encoding",
+        "X-Ratelimit-Limit": "5000",
+        "Pragma": "no-cache",
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Date": "Mon, 02 Nov 2015 14:32:39 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Set-Cookie": "csrftoken=f40fbade759f42160369326202532904; expires=Mon, 31-Oct-2016 14:32:39 GMT; Max-Age=31449600; Path=/",
+        "Connection": "keep-alive",
+        "Content-Length": "2620"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

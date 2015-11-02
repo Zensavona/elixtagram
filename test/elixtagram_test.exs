@@ -730,6 +730,15 @@ defmodule ElixtagramTest do
     end
   end
 
+  test "get users the user follows (unauthenticated, paginated)" do
+    user_id = "35822824"
+    use_cassette "user_following_paginated" do
+      follows = Elixtagram.user_follows(user_id, %{count: 10})
+      assert length(follows.results) == 10
+      assert Map.has_key?(follows, :next_cursor)
+    end
+  end
+
   test "get user's followers (unauthenticated)" do
     user_id = "35822824"
     use_cassette "user_followers" do

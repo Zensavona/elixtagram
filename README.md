@@ -164,6 +164,9 @@ It's mostly complete, but these things are missing:
 
 ## Changelog
 
+### 0.2.2
+- Add pagination support for `user_follows`, this doesn't break the existing `user_follows/2` and `user_follows/3` API.
+
 ### 0.2.1
 
 - Add `Elixtagram.authorize_url!/3`, which takes a `state` argument to pass back to the callback url. This is useful for things like CSRF protection ([read more here](https://instagram.com/developer/authentication/)). This change doesn't break or change the existing API.

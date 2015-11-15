@@ -6,7 +6,7 @@ defmodule Elixtagram.OAuthStrategy do
   # Public API
   def new do
     config = Elixtagram.Config.get
-    OAuth2.new([
+    OAuth2.Client.new([
       strategy: __MODULE__,
       client_id: config.client_id,
       client_secret: config.client_secret,

@@ -27,7 +27,7 @@ defmodule Elixtagram.Mixfile do
     [
       {:httpoison, "~> 0.7.4"},
       {:poison, "~> 1.5"},
-      {:oauth2, "~> 0.3"},
+      {:oauth2, "~> 0.5"},
       {:exvcr, "~> 0.3", only: [:dev, :test]},
       {:ex_doc, "~> 0.10.0", only: [:dev, :docs]},
       {:excoveralls, "~> 0.3", only: [:dev, :test]},

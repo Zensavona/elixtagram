@@ -110,7 +110,7 @@ All of the available methods and the ways to call them are [in the docs](https:/
 
 ## Running the tests
 
-TL;DR: `mix text`
+TL;DR: `mix test`
 
 Longer answer:
 ```

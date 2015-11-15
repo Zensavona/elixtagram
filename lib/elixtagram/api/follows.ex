@@ -18,10 +18,10 @@ defmodule Elixtagram.API.Follows do
                              fn({k, v}) -> Enum.member?(@acceptable, to_string(k)) end,
                              fn({k, v}) -> [to_string(k), v] end)
     result = get("/users/#{user_id}/follows", token, params)
-    case Map.has_key?(result.pagination, :next_cursor) do
-      true ->
-        %{results: Enum.map(result.data, &parse_user_search_result/1), next_cursor: result.pagination.next_cursor}
-      _ -> %{results: Enum.map(result.data, &parse_user_search_result/1)}
+    if Map.has_key?(result.pagination, :next_cursor) do
+      %{results: Enum.map(result.data, &parse_user_search_result/1), next_cursor: result.pagination.next_cursor}
+    else
+      %{results: Enum.map(result.data, &parse_user_search_result/1)}
     end
   end
   @doc """

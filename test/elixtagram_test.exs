@@ -739,6 +739,17 @@ defmodule ElixtagramTest do
     end
   end
 
+  test "get users the user follows - last page (unauthenticated, paginated)" do
+    user_id = "2278032181"
+    use_cassette "user_following_paginated_last_page" do
+      # the API returns a max of 100 results per "page" but is at times
+      # very buggy, returning multiple pages of empty results at a time.
+      # I assume this is due to some kind of caching.
+      follows = Elixtagram.user_follows(user_id, %{count: 100})
+      assert Map.has_key?(follows, :next_cursor) == false
+    end
+  end
+
   test "get user's followers (unauthenticated)" do
     user_id = "35822824"
     use_cassette "user_followers" do

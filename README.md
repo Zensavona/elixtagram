@@ -164,6 +164,10 @@ It's mostly complete, but these things are missing:
 
 ## Changelog
 
+### 0.2.4
+- Update the OAuth2 library to `0.5` (thanks for the PR [steffenix](https://github.com/steffenix)!)
+- add a couple more test cases around pagination to get back to 100% coverage
+
 ### 0.2.3
 - Minor pagination bugfix - was throwing a `KeyError` when requesting a paginated `user_follows` and on the last page of results.
 

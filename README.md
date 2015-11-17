@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.2.3"}]
+  [{:elixtagram, "~> 0.2.5"}]
 end
 
 ...
@@ -163,6 +163,10 @@ It's mostly complete, but these things are missing:
 
 
 ## Changelog
+
+### 0.2.5
+- Add [credo](https://github.com/rrrene/credo) in `dev` environment
+- Improve code readability and resolve credo warnings (thanks rrrene!)
 
 ### 0.2.4
 - Update the OAuth2 library to `0.5` (thanks for the PR [steffenix](https://github.com/steffenix)!)

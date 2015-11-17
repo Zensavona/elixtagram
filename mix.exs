@@ -4,7 +4,7 @@ defmodule Elixtagram.Mixfile do
   def project do
     [
       app: :elixtagram,
-       version: "0.2.4",
+       version: "0.2.5",
        elixir: "~> 1.0",
        build_embedded: Mix.env == :prod,
        start_permanent: Mix.env == :prod,

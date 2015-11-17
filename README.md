@@ -26,7 +26,6 @@ end
 
 defp deps do
   [{:elixtagram, "~> 0.2.5"}]
-end
 
 ...
 

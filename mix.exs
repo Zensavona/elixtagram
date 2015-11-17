@@ -31,7 +31,8 @@ defmodule Elixtagram.Mixfile do
       {:exvcr, "~> 0.3", only: [:dev, :test]},
       {:ex_doc, "~> 0.10.0", only: [:dev, :docs]},
       {:excoveralls, "~> 0.3", only: [:dev, :test]},
-      {:inch_ex, "~> 0.4.0", only: [:dev, :docs]}
+      {:inch_ex, "~> 0.4.0", only: [:dev, :docs]},
+      {:credo, "~> 0.1.0", only: :dev}
     ]
   end
 

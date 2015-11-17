@@ -15,8 +15,8 @@ defmodule Elixtagram.API.Media do
   @doc """
   Fetches a media item from the Instagram API by shortcode.
   """
-  def shortcode(shortcode, token \\ :global) do
-    get("/media/shortcode/#{shortcode}", token).data |> parse_media
+  def shortcode(code, token \\ :global) do
+    get("/media/shortcode/#{code}", token).data |> parse_media
   end
 
   @doc """

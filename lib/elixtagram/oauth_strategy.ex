@@ -1,12 +1,15 @@
 defmodule Elixtagram.OAuthStrategy do
   use OAuth2.Strategy
+  alias OAuth2.Client
+  alias OAuth2.Strategy.AuthCode
+  alias Elixtagram.Config
 
   @scopes ~w(comments relationships likes)
 
   # Public API
   def new do
-    config = Elixtagram.Config.get
-    OAuth2.Client.new([
+    config = Config.get
+    Client.new([
       strategy: __MODULE__,
       client_id: config.client_id,
       client_secret: config.client_secret,
@@ -25,7 +28,7 @@ defmodule Elixtagram.OAuthStrategy do
     new()
     |> put_param(:scope, scopes)
     |> put_param(:state, state)
-    |> OAuth2.Client.authorize_url!([])
+    |> Client.authorize_url!([])
   end
   def authorize_url!(scope) do
     scopes = scope
@@ -34,27 +37,27 @@ defmodule Elixtagram.OAuthStrategy do
               |> Enum.join(" ")
     new()
     |> put_param(:scope, scopes)
-    |> OAuth2.Client.authorize_url!([])
+    |> Client.authorize_url!([])
   end
   def authorize_url! do
     new()
-    |> OAuth2.Client.authorize_url!([])
+    |> Client.authorize_url!([])
   end
 
   # you can pass options to the underlying http library via `options` parameter
   def get_token!(params \\ [], headers \\ [], options \\ []) do
-    OAuth2.Client.get_token!(new(), params, headers, options)
+    Client.get_token!(new(), params, headers, options)
   end
 
   # Strategy Callbacks
 
   def authorize_url(client, params) do
-    OAuth2.Strategy.AuthCode.authorize_url(client, params)
+    AuthCode.authorize_url(client, params)
   end
 
   def get_token(client, params, headers) do
     client
     |> put_header("Accept", "application/json")
-    |> OAuth2.Strategy.AuthCode.get_token(params, headers)
+    |> AuthCode.get_token(params, headers)
   end
 end

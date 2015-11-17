@@ -2,6 +2,8 @@ defmodule Elixtagram.API.Base do
   @moduledoc """
   Provides general request making and handling functionality (for internal use).
   """
+  alias Elixtagram.Config
+
   @base_url "https://api.instagram.com/v1"
 
   @doc """
@@ -46,7 +48,7 @@ defmodule Elixtagram.API.Base do
   end
 
   defp build_url([part, []], :global) do
-    config = Elixtagram.Config.get
+    config = Config.get
     string = if config.access_token, do: "access_token=#{config.access_token}", else:  "client_id=#{config.client_id}"
 
     "#{@base_url}#{part}?#{string}"
@@ -56,7 +58,7 @@ defmodule Elixtagram.API.Base do
   end
 
   defp build_url([part, params], :global) do
-    config = Elixtagram.Config.get
+    config = Config.get
     auth_param = if config.access_token, do: ["access_token", config.access_token], else:  ["client_id", config.client_id]
     params_with_auth = [auth_param|params]
     "#{@base_url}#{part}?#{params_join(params_with_auth)}"

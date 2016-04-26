@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.2.5"}]
+  [{:elixtagram, "~> 0.2.6"}]
 
 ...
 
@@ -162,6 +162,10 @@ It's mostly complete, but these things are missing:
 
 
 ## Changelog
+
+### 0.2.6
+- Add the new `created_time` and `users_in_photo` to `Media` (thanks @deadkarma!)
+- Add new required OAuth permissions request (thanks @bobishh!)
 
 ### 0.2.5
 - Add [credo](https://github.com/rrrene/credo) in `dev` environment

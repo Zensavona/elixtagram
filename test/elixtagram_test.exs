@@ -132,6 +132,8 @@ defmodule ElixtagramTest do
       media = List.first(medias)
       assert length(medias) > 0
       assert Enum.member?(media.tags, "ts")
+      assert media.created_time
+      assert media.users_in_photo
     end
   end
 

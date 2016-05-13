@@ -134,6 +134,8 @@ defmodule ElixtagramTest do
       assert Enum.member?(media.tags, "ts")
       assert media.created_time
       assert media.users_in_photo
+      assert media.type
+      assert Enum.any?(["image", "video"], fn(t) -> media.type == t end)
     end
   end
 

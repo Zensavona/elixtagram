@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.2.6"}]
+  [{:elixtagram, "~> 0.2.7"}]
 
 ...
 
@@ -162,6 +162,9 @@ It's mostly complete, but these things are missing:
 
 
 ## Changelog
+
+### 0.2.7
+- Add the `type` attribute to Media in order to tell the difference between 'image' and 'video' types (thanks @deadkarma!)
 
 ### 0.2.6
 - Add the new `created_time` and `users_in_photo` to `Media` (thanks @deadkarma!)

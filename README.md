@@ -58,6 +58,8 @@ iex(1)> Elixtagram.configure("YOUR-CLIENT-ID", "YOUR-CLIENT-SECRET", "YOUR-REDIR
 
 ### Usage
 
+*Before using Elixtagram, it needs to be initialised. Run `Elixtagram.configure/0` or `Elixtagram.configure/1` before any other commands*
+
 #### Authenticate a user
 
 ````

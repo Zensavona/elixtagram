@@ -36,7 +36,7 @@ defmodule Elixtagram do
       iex(1)> Elixtagram.configure(:global, "MY-TOKEN")
       :ok
   """
-  defdelegate configure(:global, token), to: Elixtagram.Config, as: :configure
+  defdelegate configure(scope, token), to: Elixtagram.Config, as: :configure
 
   @doc """
   Returns the url you will need to redirect a user to for them to authorise your

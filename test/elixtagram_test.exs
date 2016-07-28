@@ -492,6 +492,26 @@ defmodule ElixtagramTest do
     end
   end
 
+  test "get recent media for users with pagination" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    use_cassette "user_recent_media_self_with_pagination" do
+      results = Elixtagram.user_recent_media_with_pagination(:self, %{count: 64}, token)
+      assert %{data: data, pagination: pagination} = results
+      assert is_list(data)
+      assert pagination[:next_url]
+      assert pagination[:next_max_id]
+    end
+  end
+
+  test "get recent media for users with pagination when results are not paginated" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+      use_cassette "user_recent_media_self_with_pagination_count_5" do
+        results = Elixtagram.user_recent_media_with_pagination(:self, %{count: 5}, token)
+        assert length(results.data) == 5
+        assert Enum.empty?(results.pagination)
+      end
+  end
+
   test "get feed for user (implicitly authenticated)" do
     token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
     Elixtagram.configure(:global, token)

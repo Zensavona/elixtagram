@@ -5,7 +5,7 @@ defmodule Elixtagram.Mixfile do
     [
       app: :elixtagram,
        version: "0.2.8",
-       elixir: "~> 1.2.3",
+       elixir: ">= 1.2.3",
        build_embedded: Mix.env == :prod,
        start_permanent: Mix.env == :prod,
        description: description,

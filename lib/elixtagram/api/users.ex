@@ -34,9 +34,19 @@ defmodule Elixtagram.API.Users do
   Fetches a list of recent media posted by a user
   """
   def recent_media(user_id, params \\ %{}, token \\ :global) do
+    recent_media_with_pagination(user_id, params, token).data |> Enum.map(&parse_media(&1))
+  end
+
+  @doc """
+  Fetches a list of recent media posted by a user along with a pagination data
+
+  Returns %{data: list_of_media, pagination: %{next_url: url, next_max_id: max_id}
+  If there are no more pages, pagination will be: %{}
+  """
+  def recent_media_with_pagination(user_id, params \\ %{}, token \\ :global) do
     accepted = [:count, :min_id, :max_id, :min_timestamp, :max_timestamp]
     request_params = parse_request_params(params, accepted)
-    get("/users/#{user_id}/media/recent", token, request_params).data |> Enum.map(&parse_media(&1))
+    get("/users/#{user_id}/media/recent", token, request_params)
   end
 
   @doc """

@@ -511,6 +511,44 @@ defmodule Elixtagram do
   defdelegate user_recent_media(user_id, params, token), to: Elixtagram.API.Users, as: :recent_media
 
   @doc """
+  Takes a user id ( or `:self`, to get media for the user associated with the token) a params Map and access token ( or `:global` if a global token has been configured).
+  Returns a Map with `:data` that contains a List of `%Elixtagram.Model.Media` and `:pagination' Map with the following keys:
+   `:next_url` - A url to retrieve the next page of results
+   `:nex_max_id` - the `:max_id` to be used to retrieve the next page of results
+
+   # Optional params:
+     * count
+     * min_id
+     * max_id
+     * min_timestamp
+     * max_timestamp
+
+   ## Example
+       iex(1)> Elixtagram.user_recent_media_with_pagination(35822824, %{count: 128}, :global)
+       %{data: [%Elixtagram.Model.Media{...}, %Elixtagram.Model.Media{...}], pagination: %{next_url: "https://api.instagram.com...", next_max_id: "1285565194378201229_1480448198"}}
+  """
+  defdelegate user_recent_media_with_pagination(user_id, params, token), to: Elixtagram.API.Users, as: :recent_media_with_pagination
+
+    @doc """
+    Takes a user id ( or `:self`, to get media for the user associated with the token) a params Map
+    Returns a Map with `:data` that contains a List of `%Elixtagram.Model.Media` and `:pagination' Map with the following keys:
+     `:next_url` - A url to retrieve the next page of results
+     `:nex_max_id` - the `:max_id` to be used to retrieve the next page of results
+
+    # Optional params:
+      * count
+      * min_id
+      * max_id
+      * min_timestamp
+      * max_timestamp
+
+     ## Example
+         iex(1)> Elixtagram.user_recent_media_with_pagination(35822824, %{count: 128})
+         %{data: [%Elixtagram.Model.Media{...}, %Elixtagram.Model.Media{...}], pagination: %{next_url: "https://api.instagram.com...", next_max_id: "1285565194378201229_1480448198"}}
+    """
+    defdelegate user_recent_media_with_pagination(user_id, params), to: Elixtagram.API.Users, as: :recent_media_with_pagination
+
+  @doc """
   Takes a Map of params and a token (or `:global` if a global token has been configured).
   Returns a List of media as `%Elixtagram.Model.Media`
 

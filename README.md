@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.2.7"}]
+  [{:elixtagram, "~> 0.2.8"}]
 
 ...
 
@@ -164,6 +164,9 @@ It's mostly complete, but these things are missing:
 
 
 ## Changelog
+
+### 0.2.8
+- Support [Elixir 1.3.x](https://github.com/Zensavona/elixtagram/pull/9) (thanks @deadkarma!)
 
 ### 0.2.7
 - Add the `type` attribute to Media in order to tell the difference between 'image' and 'video' types (thanks @deadkarma!)

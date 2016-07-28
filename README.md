@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.2.8"}]
+  [{:elixtagram, "~> 0.2.9"}]
 
 ...
 
@@ -164,6 +164,9 @@ It's mostly complete, but these things are missing:
 
 
 ## Changelog
+
+### 0.2.9
+- Add `user_recent_media_with_pagination` (thanks again @deadkarma!)
 
 ### 0.2.8
 - Support [Elixir 1.3.x](https://github.com/Zensavona/elixtagram/pull/9) (thanks @deadkarma!)

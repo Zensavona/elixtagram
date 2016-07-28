@@ -36,7 +36,19 @@ defmodule Elixtagram.API.Users do
   def recent_media(user_id, params \\ %{}, token \\ :global) do
     accepted = [:count, :min_id, :max_id, :min_timestamp, :max_timestamp]
     request_params = parse_request_params(params, accepted)
-    get("/users/#{user_id}/media/recent", token, request_params).data |> Enum.map(&parse_media(&1))
+
+    results = get("/users/#{user_id}/media/recent", token, request_params)
+    media = results.data
+
+    if params[:media] && is_list(params[:media]) do
+      media = media ++ params.media
+    end
+
+    if !is_nil(params.count) && length(media) < params.count && !Enum.empty?(results.pagination) do
+      recent_media(user_id, %{count: params.count - length(media), media: media, max_id: results.pagination.next_max_id}, token)
+    else
+      media |> Enum.map(&parse_media(&1))
+    end
   end
 
   @doc """

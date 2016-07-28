@@ -492,6 +492,14 @@ defmodule ElixtagramTest do
     end
   end
 
+  test "get recent media for users with :self for *all* posts" do
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+    use_cassette "user_recent_media_self_auth_explicit_paginated" do
+      medias = Elixtagram.user_recent_media(:self, %{count: 64}, token)
+      assert length(medias) == 64
+    end
+  end
+
   test "get feed for user (implicitly authenticated)" do
     token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
     Elixtagram.configure(:global, token)

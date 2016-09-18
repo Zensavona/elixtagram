@@ -2,7 +2,7 @@
 
 ### Elixtagram is a simple Instagram client for Elixir.
 
-[![Build Status](https://travis-ci.org/Zensavona/elixtagram.svg?branch=master)](https://travis-ci.org/Zensavona/elixtagram) [![Inline docs](http://inch-ci.org/github/zensavona/elixtagram.svg)](http://inch-ci.org/github/zensavona/elixtagram) [![Coverage Status](https://coveralls.io/repos/Zensavona/elixtagram/badge.svg?branch=master&service=github)](https://coveralls.io/github/Zensavona/elixtagram?branch=master) [![hex.pm version](https://img.shields.io/hexpm/v/elixtagram.svg)](https://hex.pm/packages/elixtagram) [![hex.pm downloads](https://img.shields.io/hexpm/dt/elixtagram.svg)](https://hex.pm/packages/elixtagram) [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/Zensavona/elixtagram.svg?branch=master)](https://travis-ci.org/Zensavona/elixtagram) [![Inline docs](http://inch-ci.org/github/zensavona/elixtagram.svg)](http://inch-ci.org/github/zensavona/elixtagram) [![Coverage Status](https://coveralls.io/repos/Zensavona/elixtagram/badge.svg?branch=master&service=github)](https://coveralls.io/github/Zensavona/elixtagram?branch=master) [![Deps Status](https://beta.hexfaktor.org/badge/all/github/Zensavona/elixtagram.svg)](https://beta.hexfaktor.org/github/Zensavona/elixtagram) [![hex.pm version](https://img.shields.io/hexpm/v/elixtagram.svg)](https://hex.pm/packages/elixtagram) [![hex.pm downloads](https://img.shields.io/hexpm/dt/elixtagram.svg)](https://hex.pm/packages/elixtagram) [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 ### [Read the docs](https://hexdocs.pm/elixtagram)
 
@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.2.9"}]
+  [{:elixtagram, "~> 0.3.0"}]
 
 ...
 
@@ -165,25 +165,30 @@ It's mostly complete, but these things are missing:
 
 ## Changelog
 
+### 0.3.0
+- Change the `Elixtagram.get_token!` function to return a tuple like `{:ok, token}`
+- Update dependencies
+- Merge a [pull request](https://github.com/Zensavona/elixtagram/pull/13) which fixes an issue relating to a newer version of OAuth2 (thanks [@radzserg](https://github.com/radzserg))
+
 ### 0.2.9
-- Add `user_recent_media_with_pagination` (thanks again @deadkarma!)
+- Add `user_recent_media_with_pagination` (thanks again [@deadkarma](https://github.com/deadkarma)!)
 
 ### 0.2.8
-- Support [Elixir 1.3.x](https://github.com/Zensavona/elixtagram/pull/9) (thanks @deadkarma!)
+- Support [Elixir 1.3.x](https://github.com/Zensavona/elixtagram/pull/9) (thanks [@deadkarma](https://github.com/deadkarma)!)
 
 ### 0.2.7
-- Add the `type` attribute to Media in order to tell the difference between 'image' and 'video' types (thanks @deadkarma!)
+- Add the `type` attribute to Media in order to tell the difference between 'image' and 'video' types (thanks [@deadkarma](https://github.com/deadkarma)!)
 
 ### 0.2.6
-- Add the new `created_time` and `users_in_photo` to `Media` (thanks @deadkarma!)
-- Add new required OAuth permissions request (thanks @bobishh!)
+- Add the new `created_time` and `users_in_photo` to `Media` (thanks [@deadkarma](https://github.com/deadkarma)!)
+- Add new required OAuth permissions request (thanks [@bobishh](https://github.com/bobishh)!)
 
 ### 0.2.5
 - Add [credo](https://github.com/rrrene/credo) in `dev` environment
-- Improve code readability and resolve credo warnings (thanks rrrene!)
+- Improve code readability and resolve credo warnings (thanks [@rrrene](https://github.com/rrrene)!)
 
 ### 0.2.4
-- Update the OAuth2 library to `0.5` (thanks for the PR [steffenix](https://github.com/steffenix)!)
+- Update the OAuth2 library to `0.5` (thanks [@steffenix!](https://github.com/steffenix)!)
 - add a couple more test cases around pagination to get back to 100% coverage
 
 ### 0.2.3

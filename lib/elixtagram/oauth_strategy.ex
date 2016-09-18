@@ -56,6 +56,7 @@ defmodule Elixtagram.OAuthStrategy do
   end
 
   def get_token(client, params, headers) do
+    params = params |> Keyword.merge([client_secret: client.client_secret])
     client
     |> put_header("Accept", "application/json")
     |> AuthCode.get_token(params, headers)

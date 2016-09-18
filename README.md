@@ -71,8 +71,8 @@ iex(1)> Elixtagram.authorize_url!
 
 iex(2)> code = "XXXXXXXXXX"
 "XXXXXXXXXX"
-iex(3)> access_token = Elixtagram.get_token!(code: code).access_token
-"XXXXXXXXXXXXXXXXXXXX"
+iex(3)> access_token = Elixtagram.get_token!(code: code)
+{:ok, "XXXXXXXXXXXXXXXXXXXX"}
 
 # Now we can optionally set this as the global token, and make requests with it by passing :global instead of a token.
 iex(4)> Elixtagram.configure(:global, access_token)

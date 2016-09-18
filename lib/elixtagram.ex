@@ -80,14 +80,23 @@ defmodule Elixtagram do
 
   @doc """
   Takes a `keyword list` containing the code returned from Instagram in the redirect after
-  login and returns a `%OAuth2.AccessToken` with an access token to store with the user or
-  use for making authenticated requests.
+  login and returns a `{:ok, access_token}` for making authenticated requests.
+  If you pass an incorrect code, it will return you an `{:error, reason}`
 
   ## Example
-      iex(1)> Elixtagram.get_token!(code: code).access_token
-      "XXXXXXXXXXXXXXXXXXXX"
+      iex(1)> Elixtagram.get_token!(code: code)
+      {:ok, "XXXXXXXXXXXXXXXXXXXX"}
   """
-  defdelegate get_token!(code), to: Elixtagram.OAuthStrategy, as: :get_token!
+  def get_token!(code) do
+    case Elixtagram.OAuthStrategy.get_token!(code) do
+      %{token: %{other_params: %{"code" => 400, "error_message" => error_message}}} ->
+        {:error, error_message}
+      %{token: %{access_token: access_token}} ->
+        {:ok, access_token}
+      _ ->
+        {:error, "Something went wrong fetching the token..."}
+    end
+  end
 
 
   ## ---------- Tags

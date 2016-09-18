@@ -25,14 +25,14 @@ defmodule Elixtagram.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 0.7.4"},
-      {:poison, "~> 1.5"},
-      {:oauth2, "~> 0.5"},
-      {:exvcr, "~> 0.3", only: [:dev, :test]},
-      {:ex_doc, "~> 0.10.0", only: [:dev, :docs]},
-      {:excoveralls, "~> 0.3", only: [:dev, :test]},
-      {:inch_ex, "~> 0.4.0", only: [:dev, :docs]},
-      {:credo, "~> 0.1.0", only: :dev}
+      {:httpoison, "~> 0.9.1"},
+      {:poison, "~> 2.2.0"},
+      {:oauth2, "~> 0.7.0"},
+      {:exvcr, "~> 0.8.2", only: [:dev, :test]},
+      {:ex_doc, "~> 0.13.1", only: [:dev, :docs]},
+      {:excoveralls, "~> 0.5.6", only: [:dev, :test]},
+      {:inch_ex, "~> 0.5.3", only: [:dev, :docs]},
+      {:credo, "~> 0.4.11", only: :dev}
     ]
   end
 

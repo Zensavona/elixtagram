@@ -12,7 +12,7 @@ defmodule Elixtagram.Mixfile do
        package: package,
        test_coverage: [tool: ExCoveralls],
        deps: deps,
-       docs: [extras: ["README.md"], main: "extra-readme"]
+       docs: [extras: ["README.md"], main: "readme"]
     ]
   end
 

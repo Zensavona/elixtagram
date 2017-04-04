@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.3.0"}]
+  [{:elixtagram, "~> 0.4.0"}]
 
 ...
 
@@ -164,6 +164,10 @@ It's mostly complete, but these things are missing:
 
 
 ## Changelog
+
+### 0.4.0
+- Merge PR #15 from @mendab1e which adds the `videos` field to `Media` (Thanks!)
+- Update the `oauth2` library to version `0.8.0` which closes Issue #14 from @radzserg (Thanks, sorry it took me so long to get to this!)
 
 ### 0.3.0
 - Change the `Elixtagram.get_token!` function to return a tuple like `{:ok, token}`

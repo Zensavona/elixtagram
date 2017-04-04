@@ -13,9 +13,9 @@ defmodule Elixtagram.API.Follows do
   @doc """
   Fetch the users a user follows, with pagination.
   """
-  def follows(user_id, %{count: count} = data, token) do
+  def follows(user_id, %{count: _count} = data, token) do
     params = Enum.filter_map(data,
-                             fn({k, v}) -> Enum.member?(@acceptable, to_string(k)) end,
+                             fn({k, _v}) -> Enum.member?(@acceptable, to_string(k)) end,
                              fn({k, v}) -> [to_string(k), v] end)
     result = get("/users/#{user_id}/follows", token, params)
     if Map.has_key?(result.pagination, :next_cursor) do

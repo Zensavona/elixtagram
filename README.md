@@ -167,7 +167,9 @@ It's mostly complete, but these things are missing:
 
 ### 0.4.0
 - Merge PR #15 from @mendab1e which adds the `videos` field to `Media` (Thanks!)
-- Update the `oauth2` library to version `0.8.0` which closes Issue #14 from @radzserg (Thanks, sorry it took me so long to get to this!)
+- Update the `oauth2` library to version `0.9.1` which closes Issue #14 from @radzserg (Thanks, sorry it took me so long to get to this!)
+- Update `httpoison` to `0.11.1`
+- Update `poison` to `3.1.0`
 
 ### 0.3.0
 - Change the `Elixtagram.get_token!` function to return a tuple like `{:ok, token}`

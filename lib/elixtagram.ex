@@ -190,6 +190,25 @@ defmodule Elixtagram do
     to: Elixtagram.API.Tags, as: :recent_media
 
   @doc """
+  Takes a tag name, a Map of params
+  Returns the n latest items in that tag among with pagination data
+
+  Search params:
+  * count
+  * min_tag_id
+  * max_tag_id
+
+  If a global access token was set with `Elixtagram.configure(:global, token)`, this
+  will be defaulted to, otherwise the client ID is used.
+
+  ## Example
+      iex(1)> Elixtagram.tag_recent_media_with_pagination("ts", %{count: 1})
+      %{data: [%Elixtagram.Model.Media{...}, %Elixtagram.Model.Media{...}], pagination: %{next_url: "https://api.instagram.com...", next_max_id: "1285565194378201229_1480448198"}}
+  """
+  defdelegate tag_recent_media_with_pagination(tag_name, params),
+    to: Elixtagram.API.Tags, as: :recent_media_with_pagination
+
+  @doc """
   Takes a tag name, a Map of params and an access token
   Returns the n latest items in that tag
 
@@ -208,6 +227,24 @@ defmodule Elixtagram do
   defdelegate tag_recent_media(tag_name, params, token),
     to: Elixtagram.API.Tags, as: :recent_media
 
+  @doc """
+  Takes a tag name, a Map of params and an access token
+  Returns the n latest items in that tag among with pagination data
+
+  Search params:
+  * count
+  * min_tag_id
+  * max_tag_id
+
+  If a global access token was set with `Elixtagram.configure(:global, token)`, this
+  will be defaulted to, otherwise the client ID is used.
+
+  ## Example
+      iex(1)> Elixtagram.tag_recent_media_with_pagination("ts", %{count: 1}, token)
+      %{data: [%Elixtagram.Model.Media{...}, %Elixtagram.Model.Media{...}], pagination: %{next_url: "https://api.instagram.com...", next_max_id: "1285565194378201229_1480448198"}}
+  """
+  defdelegate tag_recent_media_with_pagination(tag_name, params, token),
+    to: Elixtagram.API.Tags, as: :recent_media_with_pagination
 
   ## ---------- Locations
 

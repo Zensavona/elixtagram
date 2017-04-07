@@ -26,8 +26,20 @@ defmodule Elixtagram.API.Tags do
   Optionally takes an access token.
   """
   def recent_media(tag_name, params, token \\ :global) do
+    recent_media_with_pagination(tag_name, params, token).data
+    |> Enum.map(&parse_media(&1))
+  end
+
+  @doc """
+  Fetch a list of n recent medias along with a pagination data for a given tag.
+  Optionally takes an access token.
+
+  Returns %{data: list_of_media, pagination: %{next_url: url, next_max_id: max_id}
+  If there are no more pages, pagination will be: %{}
+  """
+  def recent_media_with_pagination(tag_name, params, token \\ :global) do
     accepted = [:count, :min_tag_id, :max_tag_id]
     request_params = parse_request_params(params, accepted)
-    get("/tags/#{tag_name}/media/recent", token, request_params).data |> Enum.map(&parse_media(&1))
+    get("/tags/#{tag_name}/media/recent", token, request_params)
   end
 end

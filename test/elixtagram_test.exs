@@ -122,6 +122,18 @@ defmodule ElixtagramTest do
     end
   end
 
+  test "get recent media and pagination data from a tag (unauthenticated)" do
+    tag = "ts"
+    use_cassette "tag_recent_media" do
+      %{data: medias, pagination: %{next_max_id: next_max_id}} =
+        Elixtagram.tag_recent_media_with_pagination(tag, %{count: 10})
+      media = List.first(medias)
+      assert length(medias) > 0
+      assert Enum.member?(media.tags, "ts")
+      assert next_max_id == "1084955995775571154"
+    end
+  end
+
   test "get recent media from a tag (implicitly authenticated)" do
     tag = "ts"
     token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
@@ -148,6 +160,20 @@ defmodule ElixtagramTest do
       media = List.first(medias)
       assert length(medias) > 0
       assert Enum.member?(media.tags, "ts")
+    end
+  end
+
+  test "get recent media and pagination data from a tag (explicitly authenticated)" do
+    tag = "ts"
+    token = System.get_env("INSTAGRAM_ACCESS_TOKEN")
+
+    use_cassette "tag_recent_media" do
+      %{data: medias, pagination: %{next_max_id: next_max_id}} =
+        Elixtagram.tag_recent_media_with_pagination(tag, %{count: 10}, token)
+      media = List.first(medias)
+      assert length(medias) > 0
+      assert Enum.member?(media.tags, "ts")
+      assert next_max_id == "1084955995775571154"
     end
   end
 

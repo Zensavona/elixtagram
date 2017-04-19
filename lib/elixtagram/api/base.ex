@@ -41,9 +41,15 @@ defmodule Elixtagram.API.Base do
 
   defp handle_response(data) do
     response = Poison.decode!(data.body, keys: :atoms)
-    case response.meta.code do
-      200 -> response
-      _ -> raise(Elixtagram.Error, [code: response.meta.code, message: "#{response.meta.error_type}: #{response.meta.error_message}"])
+    case response do
+      %{code: 200} ->
+        response
+      %{code: code} ->
+        raise(Elixtagram.Error, [code: code, message: "#{response.error_type}: #{response.error_message}"])
+      %{meta: %{code: 200}} ->
+        response
+      %{meta: %{code: code}} ->
+        raise(Elixtagram.Error, [code: code, message: "#{response.meta.error_type}: #{response.meta.error_message}"])
     end
   end
 

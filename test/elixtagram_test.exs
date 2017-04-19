@@ -938,4 +938,14 @@ defmodule ElixtagramTest do
       assert response == :ok
     end
   end
+
+  test "exceeded the maximum number of requests per hour" do
+    token = "XXXXXXXXXX"
+
+    use_cassette "limit_exceeded" do
+      assert_raise Elixtagram.Error, fn ->
+        Elixtagram.tag_recent_media("capybara", %{}, token)
+      end
+    end
+  end
 end

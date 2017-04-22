@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.5.0"}]
+  [{:elixtagram, "~> 0.5.1"}]
 
 ...
 
@@ -164,6 +164,9 @@ It's mostly complete, but these things are missing:
 
 
 ## Changelog
+
+### 0.5.1
+- Merge PR which better handles cases where API request limiting kicks in (PR #18, thanks @mendab1e!)
 
 ### 0.5.0
 - Merge PR #16 which implements a paginated version of `Elixtagram.tag_recent_media`: `Elixtagram.tag_recent_media_with_pagination` (thanks @mendab1e!)

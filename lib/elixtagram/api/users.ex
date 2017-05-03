@@ -55,7 +55,7 @@ defmodule Elixtagram.API.Users do
   def feed(params \\ %{}, token \\ :global) do
     accepted = [:count, :min_id, :max_id]
     request_params = parse_request_params(params, accepted)
-    get("/users/self/feed", token, request_params).data |> Enum.map(&parse_media(&1))
+    get("/users/self/media/recent", token, request_params).data |> Enum.map(&parse_media(&1))
   end
 
   @doc """

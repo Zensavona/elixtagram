@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.5.1"}]
+  [{:elixtagram, "~> 0.6.0"}]
 
 ...
 
@@ -164,6 +164,10 @@ It's mostly complete, but these things are missing:
 
 
 ## Changelog
+
+### 0.6.0
+- Merge PR which updates the new API url for `Elixtagram.user_feed/2` (PR #17, thanks @sudostack!)
+- Merge PR which adds support for the new `carousel_media` type (PR #19, thanks @mendab1e!)
 
 ### 0.5.1
 - Merge PR which better handles cases where API request limiting kicks in (PR #18, thanks @mendab1e!)

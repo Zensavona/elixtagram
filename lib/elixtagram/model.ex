@@ -14,7 +14,7 @@ defmodule Elixtagram.Model.Media do
   defstruct attribution: nil, id: nil, caption: nil, comments: nil, type: nil,
             images: nil, likes: nil, link: nil, location: nil, tags: nil,
             user: nil, filter: nil, created_time: nil, users_in_photo: nil,
-            videos: nil
+            videos: nil, carousel_media: nil
 end
 
 defmodule Elixtagram.Model.Location do

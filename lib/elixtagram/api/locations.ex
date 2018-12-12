@@ -29,6 +29,24 @@ defmodule Elixtagram.API.Locations do
   end
 
   @doc """
+  Fetch a list of n recent medias along with a pagination data for a given location (by id)
+  pass a list of params to limit your query by any combination of:
+    - count
+    - min_timestamp
+    - max_timestamp
+    - min_id
+    - max_id
+
+  Returns %{data: list_of_media, pagination: %{next_url: url, next_max_id: max_id}
+  If there are no more pages, pagination will be: %{}
+  """
+  def recent_media_with_pagination(location_id, params \\ %{}, token \\ :global) do
+    accepted = [:count, :min_timestamp, :max_timestamp, :min_id, :max_id]
+    request_params = parse_request_params(params, accepted)
+    get("/locations/#{location_id}/media/recent", token, request_params)
+  end
+
+  @doc """
   Search for locations which match some parameters, passed as a list:
     - distance (meters, default is 1000)
     - lat

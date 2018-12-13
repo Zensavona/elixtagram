@@ -25,7 +25,7 @@ end
 ...
 
 defp deps do
-  [{:elixtagram, "~> 0.6.0"}]
+  [{:elixtagram, "~> 0.7.0"}]
 
 ...
 
@@ -164,6 +164,10 @@ It's mostly complete, but these things are missing:
 
 
 ## Changelog
+
+### 0.7.0
+- Merge PR which adds `ELixtagram.recent_media_with_pagination/3` (PR #23, thanks @PuckOut!)
+- Update dependencies
 
 ### 0.6.0
 - Merge PR which updates the new API url for `Elixtagram.user_feed/2` (PR #17, thanks @sudostack!)

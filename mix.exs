@@ -4,7 +4,7 @@ defmodule Elixtagram.Mixfile do
   def project do
     [
       app: :elixtagram,
-       version: "0.6.0",
+       version: "0.7.0",
        elixir: ">= 1.2.3",
        build_embedded: Mix.env == :prod,
        start_permanent: Mix.env == :prod,
@@ -25,14 +25,15 @@ defmodule Elixtagram.Mixfile do
 
   defp deps do
     [
-      {:httpoison, "~> 0.11.2"},
-      {:poison, "~> 3.1.0"},
-      {:oauth2, "~> 0.9.1"},
-      {:exvcr, "~> 0.8.8", only: [:dev, :test]},
-      {:ex_doc, "~> 0.15.1", only: [:dev, :docs]},
-      {:excoveralls, "~> 0.6.3", only: [:dev, :test]},
-      {:inch_ex, "~> 0.5.6", only: [:dev, :docs]},
-      {:credo, "~> 0.7.3", only: :dev}
+      {:httpoison, "~> 1.4"},
+      {:poison, "~> 3.0"},
+      {:oauth2, "~> 0.9.4"},
+      {:exvcr, "~> 0.10.3", only: [:dev, :test]},
+      {:ex_doc, "~> 0.19.1", only: [:dev, :docs]},
+      {:nimble_parsec, "~> 0.4.0", only: [:dev, :docs]},
+      {:excoveralls, "~> 0.10.3", only: [:dev, :test]},
+      {:inch_ex, "~> 1.0", only: [:dev, :docs]},
+      {:credo, "~> 0.7", only: :dev}
     ]
   end
 

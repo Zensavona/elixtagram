@@ -6,7 +6,7 @@ defmodule Elixtagram.API.Base do
 
   @base_url "https://api.instagram.com/v1"
 
-  @json_library Application.get_env(:elixtagram, :json_library)
+  @json_library Application.get_env(:elixtagram, :json_library, Jason)
 
   @doc """
   General HTTP `GET` request function. Takes a url part

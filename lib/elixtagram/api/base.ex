@@ -6,6 +6,8 @@ defmodule Elixtagram.API.Base do
 
   @base_url "https://api.instagram.com/v1"
 
+  @json_library Application.get_env(:elixtagram, :json_library)
+
   @doc """
   General HTTP `GET` request function. Takes a url part
   and optionally a token and list of params.
@@ -40,7 +42,7 @@ defmodule Elixtagram.API.Base do
   end
 
   defp handle_response(data) do
-    response = Poison.decode!(data.body, keys: :atoms)
+    response = @json_library.decode!(data.body, keys: :atoms)
     case response do
       %{code: 200} ->
         response
